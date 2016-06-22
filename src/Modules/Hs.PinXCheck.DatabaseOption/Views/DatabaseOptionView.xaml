@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Hs.PinXCheck.Database.Pane.Views.DatabaseOptionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"           
+             xmlns:metro="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <TabControl IsEnabled="{Binding PaneEnabled}">
+            <!--Database editing options-->
+            <TabItem Header="Database">
+                <ContentControl prism:RegionManager.RegionName="DbOptionsEditTab"/>
+            </TabItem>
+            <!--Unused Tables-->
+            <TabItem Header="Tables">
+                <ContentControl prism:RegionManager.RegionName="DbOptionsTableTab"/>
+            </TabItem>
+            <!--datbase table matching-->
+            <TabItem Header="Match">
+                <ContentControl  prism:RegionManager.RegionName="DbOptionsMatchTab"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

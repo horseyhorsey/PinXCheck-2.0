@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Hs.PinXCheck.UnusedTables.Views.UnusedTablesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:views="clr-namespace:Hs.PinXCheck.UnusedTables.Views"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <views:UnusedTablesControlView Grid.Row="0"/>
+
+        <views:UnusedTablesListView Grid.Row="1" />
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,163 @@
+﻿<metro:Flyout x:Class="Hs.PinXCheck.Shell.Views.SystemSettingsFlyout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Theme="Accent"                      
+             Width="Auto" Position="Top"
+             Name="root"
+             Header="{Binding SelectedSystem.Name}">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Label Content="System Type" Grid.Row="1" ToolTip="0=Custom,1=VisualPinball,2=FuturePinball"></Label>
+        <DockPanel Margin="5" Grid.Row="1" Grid.Column="1">
+
+            <ComboBox Margin="2" ToolTip="System type" SelectedIndex="{Binding SelectedSystem.PinXType}"  MaxWidth="110" Width="110">
+                <ComboBoxItem Content="0"/>
+                <ComboBoxItem Content="1" IsSelected="True"/>
+                <ComboBoxItem Content="2"/>
+            </ComboBox>
+            <CheckBox Content="System Enabled" IsChecked="{Binding SelectedSystem.Enabled}" Margin="5"/>
+        </DockPanel>
+
+        <Label Content="Working Path" Grid.Row="2" MaxHeight="28"/>
+        <TextBox  Grid.Column="1" Grid.Row="2" Height="25" 
+                  Text="{Binding SelectedSystem.WorkingPath}"/>
+
+        <Label Content="Default Exe" Grid.Row="3" Margin="5"/>
+        <TextBox Text="{Binding SelectedSystem.Executable}" Grid.Column="1" Grid.Row="3" Height="25"/>
+
+        <Button Margin="2" Grid.Column="2" Grid.Row="3" 
+                HorizontalAlignment="Right" Height="25" Width="25"
+                Command="{Binding SetFileCommand}" CommandParameter="Executable"
+                ToolTip="Default executable" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="14" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_folder}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <Label Content="System params" Grid.Row="4" Margin="5"/>
+        <TextBox Text="{Binding SelectedSystem.Parameters}" Grid.Column="1" Grid.Row="4" Height="25"/>
+
+        <!--TablePath-->
+        <Label Content="Tables Path" Grid.Row="5" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Height="25" Text="{Binding SelectedSystem.TablePath}" />
+        <Button Margin="2" Grid.Column="2" Grid.Row="5" 
+                HorizontalAlignment="Right" Height="25" Width="25"
+                Command="{Binding SetFolderCommand}" CommandParameter="TablePath"
+                ToolTip="Path for before" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="14" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_folder}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <Label Content="NvRam Path" Grid.Row="6" Margin="5"/>
+        <TextBox Text="{Binding SelectedSystem.Nvrampath}" Grid.Column="1" Grid.Row="6" Height="25"/>
+        <Button Margin="2" Grid.Column="2" Grid.Row="6" 
+                HorizontalAlignment="Right" Height="25" Width="25"
+                Command="{Binding SetFolderCommand}" CommandParameter="NvramPath"
+                ToolTip="Exe or script to launch before system" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="14" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_folder}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <!--Launch before Options-->
+        <DockPanel Margin="5" Grid.Row="7" Grid.Column="1">
+            <CheckBox x:Name="LaunchBeforeOn" Content="Launch Before"
+                      IsChecked="{Binding SelectedSystem.LaunchBefore}"
+                      Margin="5"/>
+            <CheckBox Content="Hide" Margin="5"
+                      IsChecked="{Binding SelectedSystem.LaunchBeforeHideWindow}"
+                      IsEnabled="{Binding ElementName=LaunchBeforeOn,Path=IsChecked}"/>
+            <CheckBox Content="Wait" Margin="5" 
+                      IsChecked="{Binding SelectedSystem.LaunchBeforeWaitForExit}"
+                      IsEnabled="{Binding ElementName=LaunchBeforeOn,Path=IsChecked}"/>
+        </DockPanel>
+
+        <Label Content="Before path" Grid.Row="8" Margin="5"/>
+        <TextBox Text="{Binding SelectedSystem.LaunchBeforePath}" Grid.Column="1" Grid.Row="8" Height="25"/>
+
+        <Label Content="Before file" Grid.Row="9" Margin="5"/>
+        <TextBox Text="{Binding SelectedSystem.LaunchBeforeexe}" Grid.Column="1" Grid.Row="9" Height="25"/>
+        <Button Margin="2" Grid.Column="2" Grid.Row="9" 
+                HorizontalAlignment="Right" Height="25" Width="25"
+                Command="{Binding SetFileCommand}" CommandParameter="BeforeFile"
+                ToolTip="Path for after game launched script/exe" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="14" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_folder}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <!--Launch after Options-->
+        <DockPanel Margin="5" Grid.Row="10" Grid.Column="1">
+            <CheckBox x:Name="LaunchAfterOn" Content="Launch After" Margin="5"
+                      IsChecked="{Binding SelectedSystem.LaunchAfter}"/>
+            <CheckBox Content="Hide" IsEnabled="{Binding ElementName=LaunchAfterOn,Path=IsChecked}"
+                      IsChecked="{Binding SelectedSystem.LaunchAfterHideWindow}" Margin="5"/>
+            <CheckBox Content="Wait" Margin="5" 
+                      IsChecked="{Binding SelectedSystem.LaunchAfterWaitForExit}" 
+                      IsEnabled="{Binding ElementName=LaunchAfterOn,Path=IsChecked}"/>
+        </DockPanel>
+
+        <Label Content="After path" Grid.Row="11" Margin="5"/>
+        <TextBox Text="{Binding SelectedSystem.LaunchAfterWorkingPath}" Grid.Column="1" Grid.Row="11" Height="25"/>
+
+        <Label Content="After file" Grid.Row="12" Margin="5"/>
+        <TextBox Text="{Binding SelectedSystem.LaunchAfterexe}" Grid.Column="1" Grid.Row="12" Height="25"/>
+        <Button Margin="2" Grid.Column="2" Grid.Row="12" 
+                HorizontalAlignment="Right" Height="25" Width="25"
+                Command="{Binding SetFileCommand}" CommandParameter="AfterFile"
+                ToolTip="Exe or script to launch after system" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="14" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_folder}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <Label Content="Save settings" Grid.Row="13"></Label>
+        <Button Margin="2" Grid.Column="1" Grid.Row="13" 
+                HorizontalAlignment="Center" Height="25" Width="25"
+                Command="{Binding SaveSystemToIniCommand}"
+                Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="14" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_save}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+    </Grid>
+
+</metro:Flyout>

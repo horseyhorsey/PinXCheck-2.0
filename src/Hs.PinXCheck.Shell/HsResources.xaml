@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+  <Storyboard x:Key="storyBoard">
+    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Height)" 
+                                   Storyboard.TargetName="SplitRow">
+      <DiscreteObjectKeyFrame KeyTime="0" Value="300"/>
+      <DiscreteObjectKeyFrame KeyTime="0:0:0.20" Value="5"/>
+    </ObjectAnimationUsingKeyFrames>
+  </Storyboard>
+
+</ResourceDictionary>

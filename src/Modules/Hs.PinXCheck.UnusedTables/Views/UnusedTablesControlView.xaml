@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Hs.PinXCheck.UnusedTables.Views.UnusedTablesControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <DockPanel Background="{DynamicResource AccentColorBrush}"  LastChildFill="False">
+        <Button Margin="2" Grid.Column="2" Grid.Row="10" 
+                HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" 
+                Command="{Binding OpenFolderCommand}" CommandParameter=""
+                ToolTip="Open tables folder (Not Implemented)" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="22" Height="22" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_folder_open}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <Button Margin="2" Grid.Column="2" Grid.Row="10" 
+                HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="30"
+                Command="{Binding AddTablesCommand}" CommandParameter="SelectedTables"
+                ToolTip="Add selected items" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_add}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <Button Margin="2" Grid.Column="2" Grid.Row="10" 
+                HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="30"
+                Command="{Binding AddTablesCommand}" CommandParameter="AllTables"
+                ToolTip="Add all" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_add_multiple}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <Button Margin="2" Grid.Column="2" Grid.Row="10" 
+                HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="30"
+                Command="{Binding ReplaceTableCommand}" CommandParameter=""
+                ToolTip="Replace selected table File with selected table in list" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_reply_calendar}"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <CheckBox Content="Enabled" VerticalAlignment="Center" IsChecked="{Binding Enabled}" Margin="5"
+                      Height="18"  ToolTip="Table enabled" />
+        <CheckBox Content="Dmd" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                      IsChecked="{Binding Dmd}" Height="18"  ToolTip="Hide Dmd"/>
+        <CheckBox Content="Translite" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                      IsChecked="{Binding Translite}" Height="18" ToolTip="Hide Backglass"/>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Hs.PinXCheck.Database.Editing.Views.DatabaseOptions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:views="clr-namespace:Hs.PinXCheck.Database.Editing.Views"             
+             BorderThickness="2"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <StackPanel>
+        
+        <views:DatabaseEditView/>
+        <views:SaveDbView/>
+        <views:GameFilterView/>
+        
+    </StackPanel>
+</UserControl>

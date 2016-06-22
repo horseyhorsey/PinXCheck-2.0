@@ -1,0 +1,197 @@
+﻿<UserControl x:Class="Hs.PinXCheck.Database.View.Views.DatabaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"           
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        
+        <Style TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <DataTrigger 
+                    Binding="{Binding RelativeSource={RelativeSource Self},Path=Content.Text}" 
+                     Value="True">
+                    <Setter Property="Background" Value="#263DDE36"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=Content.Text}"
+                             Value="False">
+                    <Setter Property="Background" Value="#26FF5454"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--<DataGridTextColumn Header="Have" Binding="{Binding TableFileExists}">
+            <DataGridTextColumn.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TableFileExists}" Value="True">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TableFileExists}" Value="False">
+                            <Setter Property="Background" Value="Crimson"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGridTextColumn.CellStyle>
+        </DataGridTextColumn>-->
+
+        <Style x:Key="deleteButtonStyle" TargetType="Button">
+            <Style.Setters>
+                <!--<Setter Property="Vis" Value="{DynamicResource appbar_delete}"></Setter>-->
+            </Style.Setters>
+        </Style>
+
+        <Style x:Key="deleteRectangle" TargetType="Rectangle">
+            <Style.Setters>
+                <Setter Property="Fill" 
+                        Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}"/>
+                <Setter Property="Width" Value="15"/>
+                <Setter Property="Height" Value="15"/>
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Name="root">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Database Editor View" Grid.RowSpan="4">
+            <DataGrid BorderThickness="2" CanUserAddRows="false" x:Name="DatabaseGrid" IsSynchronizedWithCurrentItem="True"
+                      ItemsSource="{Binding TableList,UpdateSourceTrigger=PropertyChanged}"
+                      AutoGenerateColumns="False" CanUserReorderColumns="False"
+                  CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
+                  Background="#FF7C7C7C" Margin="0,1,0,4">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <prism:InvokeCommandAction 
+                            Command="{Binding SelectionChanged}" 
+                            CommandParameter="{Binding SelectedItems,
+                            ElementName=DatabaseGrid}">
+                        </prism:InvokeCommandAction>
+                    </i:EventTrigger>
+
+                    <i:EventTrigger EventName="CellEditEnding">
+                        <prism:InvokeCommandAction
+                            Command="{Binding RowEditEndedCommand}"
+                            CommandParameter="{Binding ElementName=DatabaseGrid}">
+                        </prism:InvokeCommandAction>    
+                    </i:EventTrigger>
+                    
+                </i:Interaction.Triggers>
+                
+                <DataGrid.ContextMenu>
+                    <ContextMenu x:Name="tablesContext">
+                        <MenuItem Header="Play table"></MenuItem>
+                        <MenuItem Header="Launch editor" x:Name="LEditor" Visibility="Hidden"></MenuItem>
+                        <MenuItem Header="Camera Mode" Visibility="Hidden">
+                            <MenuItem Header="Load Camera" ToolTip="Launch to camera mode"></MenuItem>
+                            <MenuItem Header="Cam Setup" ToolTip="Reset table view to suggested Layout Guidline with no slope"></MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Launch to script" Visibility="Hidden"></MenuItem>
+                        <MenuItem Header="Basic Script" Visibility="Hidden" ToolTip="Load script %tablename%_Basic.vbs">
+                            <MenuItem Header="Play Bsc Script" ToolTip="Load bsc script and play"></MenuItem>
+                            <MenuItem Header="Edit Bsc Script" ToolTip="Load bsc script to editor"></MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Full Script" Visibility="Hidden" ToolTip="Load script %tablename%_Full.vbs">
+                            <MenuItem Header="Play Full Script"  ToolTip="Load bsc script and play"></MenuItem>
+                            <MenuItem Header="Edit Full Script" ToolTip="Load bsc script to editor"></MenuItem>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn  Header="Del" Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="delete" Margin="2" Height="25" Width="25"
+                                        Style="{DynamicResource AccentedSquareButtonStyle}"
+                                        Command="{Binding ElementName=root,Path=DataContext.RemoveTableCommand}"
+                                        ToolTip="Remove table">
+                                    <Rectangle  Style="{StaticResource deleteRectangle}">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_delete}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+                    <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                        EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                        Header="On" MaxWidth="40" Binding="{Binding Enabled,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <DataGridTextColumn Header="Table File" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" Visibility="Visible">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding TableFileExists}" 
+                        						Value="True">
+                                        <Setter Property="Background" Value="#263DDE36"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding TableFileExists}" 
+                        						Value="False">
+                                        <Setter Property="Background" Value="#26FF5454"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsDescriptionMatched, UpdateSourceTrigger=PropertyChanged}" 
+                        						Value="True">
+                                        <Setter Property="Background" Value="#263DDE36"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsDescriptionMatched, UpdateSourceTrigger=PropertyChanged}" 
+                        						Value="False">
+                                        <Setter Property="Background" Value="#26FF5454"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    
+                    <!--Search master-->
+                    <DataGridTemplateColumn Header="" Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="2" Height="25" Width="25"
+                                        Style="{DynamicResource AccentedSquareButtonStyle}"
+                                        Command="{Binding ElementName=root,Path=DataContext.NavigateCommand}"
+                                        CommandParameter="MasterDatabaseView"
+                                        ToolTip="Search + replace description">
+                                    <Rectangle  Style="{StaticResource deleteRectangle}">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_magnify}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Rom" Binding="{Binding RomName}"/>
+                    <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer}"/>
+                    <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                    <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
+                    <DataGridCheckBoxColumn Header="HideDmd" ElementStyle="{DynamicResource MetroDataGridCheckBox}" Binding="{Binding HideDmd}"/>
+                    <DataGridCheckBoxColumn Header="HideBackglass" ElementStyle="{DynamicResource MetroDataGridCheckBox}" Binding="{Binding HideBackGlass}"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                    <DataGridTextColumn Header="Executable" Binding="{Binding AlternateExe}"/>
+                    <DataGridTextColumn Header="Author" Binding="{Binding Author}"/>
+                    <DataGridCheckBoxColumn Header="Desktop" ElementStyle="{DynamicResource MetroDataGridCheckBox}" Binding="{Binding Desktop,UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+    </Grid>
+</UserControl>

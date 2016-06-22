@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Hs.PinXCheck.DescriptionMatch.Views.DescriptionMatchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:views="clr-namespace:Hs.PinXCheck.DescriptionMatch.Views"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <views:DescriptionMatchControlView/>
+        <views:DescriptionMatchGridView Grid.Row="1"/>
+    </Grid>
+</UserControl>

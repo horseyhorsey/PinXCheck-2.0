@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Hs.PinXCheck.Database.Editing.Views.GameFilterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"           
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="300">
+    <Grid>
+        <GroupBox Header="Filtering">
+            <DockPanel>
+                <metro:ToggleSwitch Content="UnMatched" IsChecked="{Binding UnmatchedFilter}" ToolTip="Only show unmatched descriptions"/>
+                <metro:ToggleSwitch Content="Table Off" IsChecked="{Binding EnabledFilter}" ToolTip="Only show disabled tables"/>
+                <TextBox metro:TextBoxHelper.Watermark="Table Filter" 
+                         Text="{Binding TextFilter,UpdateSourceTrigger=PropertyChanged}" 
+                         Margin="5,0" MaxHeight="25"/>
+            </DockPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

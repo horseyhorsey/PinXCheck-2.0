@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:gridAnim="clr-namespace:Hs.PinXCheck.Shell.Helpers">
+
+    <Storyboard x:Key="storyBoard">
+        <gridAnim:GridLengthAnimation AutoReverse="False"  
+            Storyboard.TargetName="SplitRow"
+            Storyboard.TargetProperty="Height" 
+            To="5"
+            ReverseValue="300"
+            Duration="0:0:0.5"/>
+        </Storyboard>
+
+</ResourceDictionary>

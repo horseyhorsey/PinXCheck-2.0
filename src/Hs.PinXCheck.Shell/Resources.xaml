@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    x:Class="resources_resources_xaml">
+
+    <Storyboard x:Key="storyBoard">
+            <DoubleAnimation AutoReverse="True"  
+            Storyboard.TargetName="SplitRow"
+            Storyboard.TargetProperty="Height" 
+            From="300" To="5"
+            Duration="0:0:1"/>
+        </Storyboard>
+
+</ResourceDictionary>

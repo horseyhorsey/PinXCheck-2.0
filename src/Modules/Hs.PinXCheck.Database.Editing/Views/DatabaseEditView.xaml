@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Hs.PinXCheck.Database.Editing.Views.DatabaseEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <GroupBox Header="Edit options">
+            <DockPanel Height="28" VerticalAlignment="Top">
+                <Label Content="Executable" HorizontalAlignment="Left" Margin="0,2,0,0" 
+                       Width="67" Height="26" VerticalAlignment="Top"/>
+            <ComboBox Margin="0,2,0,0" HorizontalAlignment="Left" ItemsSource="{Binding ExecutableList}"
+                      Width="129" Height="22" VerticalAlignment="Top"
+                      ToolTip="Executables found in your working path for this system."/>
+                <Button Margin="4,2,0,0" Content="Apply" Height="25"
+                        Command="{Binding ReplaceExeCommand}"
+                        VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" 
+                        ToolTip="Apply this executable to all selected in list"/>
+            <Button Margin="50,2,0,0" Content="Rom" Command="{Binding GetTableInfoCommand}"
+                        CommandParameter="Rom"
+                        ToolTip="Try to retrieve romname from the selected _tables. (VP only)" 
+                        HorizontalAlignment="Left" Width="45" Height="25" VerticalAlignment="Top"/>
+                <Button Margin="5,2,0,0" Content="Rating" ToolTip="Get selected _tables ratings from ipdb lists"
+                        Height="21"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="50"/>
+                <Button Margin="5,2,0,0" Content="Author"
+                        Command="{Binding GetTableInfoCommand}"
+                        CommandParameter="Author"
+                        ToolTip="Try and retrieve Author name from table. (FP-VP)" 
+                        HorizontalAlignment="Left" Width="62" Height="25" VerticalAlignment="Top"/>
+                <RadioButton Content="Enabled" Margin="50,5,0,0" VerticalAlignment="Top"
+                             Command="{Binding SetRadioGroup}"
+                             CommandParameter="0"
+                             IsChecked="True" Height="18" HorizontalAlignment="Left" Width="66"/>
+                <RadioButton Content="Dmd" Margin="5,5,0,0" VerticalAlignment="Top"
+                             Command="{Binding SetRadioGroup}"
+                             CommandParameter="1"
+                             Height="18" HorizontalAlignment="Left" Width="50" />
+                <RadioButton  Content="BG" Margin="5,5,0,0" VerticalAlignment="Top"
+                             Command="{Binding SetRadioGroup}"
+                             CommandParameter="2"                              
+                              Height="18" HorizontalAlignment="Left" Width="39" />
+                <Button Content="On" Margin="15,2,0,0" VerticalAlignment="Top"  Height="25" HorizontalAlignment="Left"
+                        Command="{Binding SetOptionsCommand}"
+                        CommandParameter="on"
+                        Width="33" ToolTip="Switch On all selected _tables"/>
+                <Button Content="Off" Margin="8,2,0,0" VerticalAlignment="Top" Height="25" 
+                        Command="{Binding SetOptionsCommand}"
+                        CommandParameter="off"                        
+                        HorizontalAlignment="Left" Width="33" ToolTip="Switch Off all selected tables" />
+            </DockPanel>
+        </GroupBox>
+</UserControl>

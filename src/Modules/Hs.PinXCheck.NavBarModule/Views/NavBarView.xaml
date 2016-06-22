@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="NavBarModule.Views.NavBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"                          
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <DockPanel LastChildFill="False">
+        
+        <ItemsControl prism:RegionManager.RegionName="SystemsRegion" Width="300"/>
+        
+    </DockPanel>
+    
+</UserControl>
