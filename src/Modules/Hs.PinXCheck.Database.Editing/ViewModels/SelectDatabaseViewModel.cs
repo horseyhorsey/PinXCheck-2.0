@@ -68,8 +68,7 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
         {
             try
             {
-                _eventAggregator.GetEvent<DatabaseChanged>().Publish(_settingsRepo.PinXCheckSettings.PinballXPath + "\\Databases\\" + currentSystem + "\\" + SelectedDatabase);
-                _eventAggregator.GetEvent<UpdatedUnusedTables>().Publish("");                
+                _eventAggregator.GetEvent<DatabaseChanged>().Publish(_settingsRepo.PinXCheckSettings.PinballXPath + "\\Databases\\" + currentSystem + "\\" + SelectedDatabase);                  
             }
             catch (Exception) { }
             

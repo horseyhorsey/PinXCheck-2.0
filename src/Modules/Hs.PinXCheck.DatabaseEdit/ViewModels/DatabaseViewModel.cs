@@ -220,6 +220,7 @@ namespace Hs.PinXCheck.Database.View.ViewModels
             TableList.CurrentChanged += TableList_CurrentChanged;
 
             _eventAggregator.GetEvent<DatabaseUpdated>().Publish("");
+            _eventAggregator.GetEvent<UpdatedUnusedTables>().Publish("");
         }
 
         private void TableList_CurrentChanged(object sender, EventArgs e)

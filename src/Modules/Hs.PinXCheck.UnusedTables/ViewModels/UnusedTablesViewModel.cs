@@ -109,7 +109,7 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
 
             OpenFolderCommand = new DelegateCommand(() => Process.Start(_selectedSrv.CurrentTablePath));
 
-            //_eventAggregator.GetEvent<UpdatedUnusedTables>().Subscribe(GetUnusedTables);
+            _eventAggregator.GetEvent<UpdatedUnusedTables>().Subscribe(GetUnusedTables);
 
             //GetUnusedTables("");
         }
@@ -205,19 +205,28 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                     {
                         var tableName = Path.GetFileNameWithoutExtension(item.FullName);
 
-                        var tableExistsInDb =
-                            _tablesRepo.PinballXTableList.Where(x => x.Name == tableName).FirstOrDefault();
 
-                        if (tableExistsInDb == null)
+                        try
                         {
-                            unusedTables.Add(new TableFile()
+                            var tableExistsInDb =
+                                _tablesRepo.PinballXTableList.Where(x => x.Name == tableName);
+                            
+                            if (tableExistsInDb.Count() == 0)
                             {
-                                TableName = tableName,
-                                Extension = item.Extension,
-                                TableDate = item.LastWriteTime,
-                                TableFileName = item.FullName
-                            });
+                                unusedTables.Add(new TableFile()
+                                {
+                                    TableName = tableName,
+                                    Extension = item.Extension,
+                                    TableDate = item.LastWriteTime,
+                                    TableFileName = item.FullName
+                                });
+                            }
                         }
+                        catch (Exception)
+                        {
+                            
+                        }
+
                     }
                 }
             }
