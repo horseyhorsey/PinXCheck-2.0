@@ -2,6 +2,7 @@
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.PrismBase;
 using Hs.PinXCheck.Base.Services;
+using Hs.PinXCheck.Database.Editing.Models;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -23,32 +24,26 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
         private ISelectedService _selectedService;
         private ISettingsRepo _settingsRepo;
 
-        private ICollectionView executableList;
-        public ICollectionView ExecutableList
-        {
-            get { return executableList; }
-            set { SetProperty(ref executableList, value); }
-        }
-
+        #region Commands
         public DelegateCommand<string> ReplaceExeCommand { get; private set; }
         public DelegateCommand<string> GetTableInfoCommand { get; private set; }
         public DelegateCommand<string> SetRadioGroup { get; private set; }
-        public DelegateCommand<string> SetOptionsCommand { get; private set; } 
+        public DelegateCommand<string> SetOptionsCommand { get; private set; }
+        #endregion
 
-
-        private int radioGroupSelected = 0;
-        public int RadioGroupSelected
+        private DbEditOption  _dbEditOption;
+        public DbEditOption DbEditOption
         {
-            get { return radioGroupSelected; }
-            set { SetProperty(ref radioGroupSelected, value); }
+            get { return _dbEditOption; }
+            set { SetProperty(ref _dbEditOption, value); }
         }
-
-
         public DatabaseEditViewModel(IEventAggregator ea, ISelectedService selectedService, ISettingsRepo settings)
         {
             _eventAggregator = ea;
             _selectedService = selectedService;
             _settingsRepo = settings;
+
+            DbEditOption = new DbEditOption();
 
             _eventAggregator.GetEvent<SystemSelected>().Subscribe(PopulateExecutables);            
 
@@ -56,7 +51,7 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
 
             ReplaceExeCommand = new DelegateCommand<string>(x =>
             {
-                _eventAggregator.GetEvent<ReplaceExecutableEvent>().Publish(ExecutableList.CurrentItem.ToString());
+                _eventAggregator.GetEvent<ReplaceExecutableEvent>().Publish(DbEditOption.ExecutableList.CurrentItem.ToString());
             });
 
             GetTableInfoCommand = new DelegateCommand<string>(x =>
@@ -68,7 +63,7 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
             {
                 var radioNumber = Convert.ToInt32(x);
 
-                RadioGroupSelected = radioNumber;
+                DbEditOption.RadioGroupSelected = radioNumber;
             });
 
             SetOptionsCommand = new DelegateCommand<string>(SetOptionsForTable);
@@ -83,7 +78,7 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
             if (onOff == "on") OnOrOff = true;
             else OnOrOff = false;
 
-            switch (RadioGroupSelected)
+            switch (DbEditOption.RadioGroupSelected)
             {
                 case 0:
                     dict.Add("Enabled", OnOrOff);
@@ -126,7 +121,7 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
                     exeList.Add(item.Name);
                 }
 
-                ExecutableList = new ListCollectionView(exeList);
+                DbEditOption.ExecutableList = new ListCollectionView(exeList);
 
             }
             catch (Exception) { }

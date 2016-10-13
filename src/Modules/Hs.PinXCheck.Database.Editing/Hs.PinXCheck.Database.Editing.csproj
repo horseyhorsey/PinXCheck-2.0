@@ -84,6 +84,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\DbEditOption.cs" />
     <Compile Include="ViewModels\GameFilterViewModel.cs" />
     <Compile Include="Views\GameFilterView.xaml.cs">
       <DependentUpon>GameFilterView.xaml</DependentUpon>

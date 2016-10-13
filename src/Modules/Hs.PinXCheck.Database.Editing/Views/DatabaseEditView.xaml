@@ -7,7 +7,7 @@
             <DockPanel Height="28" VerticalAlignment="Top">
                 <Label Content="Executable" HorizontalAlignment="Left" Margin="0,2,0,0" 
                        Width="67" Height="26" VerticalAlignment="Top"/>
-            <ComboBox Margin="0,2,0,0" HorizontalAlignment="Left" ItemsSource="{Binding ExecutableList}"
+            <ComboBox Margin="0,2,0,0" HorizontalAlignment="Left" ItemsSource="{Binding DbEditOption.ExecutableList}"
                       Width="129" Height="22" VerticalAlignment="Top"
                       ToolTip="Executables found in your working path for this system."/>
                 <Button Margin="4,2,0,0" Content="Apply" Height="25"
