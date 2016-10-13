@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Data;
@@ -29,7 +30,9 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
         #region Commands
         public DelegateCommand<IList> SelectionChanged { get; private set; }
         public DelegateCommand<string> AddTablesCommand { get; private set; }
-        public DelegateCommand ReplaceTableCommand { get; private set; } 
+        public DelegateCommand ReplaceTableCommand { get; private set; }
+
+        public DelegateCommand OpenFolderCommand { get; private set; } 
 
         #endregion
 
@@ -103,6 +106,8 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                     TableName = x
                 });
             });
+
+            OpenFolderCommand = new DelegateCommand(() => Process.Start(_selectedSrv.CurrentTablePath));
 
             //_eventAggregator.GetEvent<UpdatedUnusedTables>().Subscribe(GetUnusedTables);
 

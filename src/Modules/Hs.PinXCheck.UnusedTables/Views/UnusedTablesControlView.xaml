@@ -7,8 +7,8 @@
         <Button Margin="2" Grid.Column="2" Grid.Row="10" 
                 HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" 
                 Command="{Binding OpenFolderCommand}" CommandParameter=""
-                ToolTip="Open tables folder (Not Implemented)" Style="{DynamicResource AccentedSquareButtonStyle}">
-            <Rectangle Width="22" Height="22" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+                ToolTip="Open tables folder" Style="{DynamicResource AccentedSquareButtonStyle}">
+            <Rectangle Width="18" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
                 <Rectangle.OpacityMask>
                     <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_folder_open}"/>
                 </Rectangle.OpacityMask>
@@ -19,7 +19,7 @@
                 HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="30"
                 Command="{Binding AddTablesCommand}" CommandParameter="SelectedTables"
                 ToolTip="Add selected items" Style="{DynamicResource AccentedSquareButtonStyle}">
-            <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+            <Rectangle Width="16" Height="13" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
                 <Rectangle.OpacityMask>
                     <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_add}"/>
                 </Rectangle.OpacityMask>
@@ -30,7 +30,7 @@
                 HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="30"
                 Command="{Binding AddTablesCommand}" CommandParameter="AllTables"
                 ToolTip="Add all" Style="{DynamicResource AccentedSquareButtonStyle}">
-            <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+            <Rectangle Width="17" Height="18" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
                 <Rectangle.OpacityMask>
                     <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_add_multiple}"/>
                 </Rectangle.OpacityMask>
@@ -41,7 +41,7 @@
                 HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="30"
                 Command="{Binding ReplaceTableCommand}" CommandParameter=""
                 ToolTip="Replace selected table File with selected table in list" Style="{DynamicResource AccentedSquareButtonStyle}">
-            <Rectangle Width="20" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
+            <Rectangle Width="16" Height="18" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
                 <Rectangle.OpacityMask>
                     <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_reply_calendar}"/>
                 </Rectangle.OpacityMask>
