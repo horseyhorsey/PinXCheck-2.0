@@ -2,6 +2,7 @@
 using Hs.VirtualPin.Database;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -87,7 +88,17 @@ namespace Hs.PinXCheck.Services
                 }
 
             }
-            catch (Exception e) { }
+            catch (Exception e) {
+
+                using (var f = new StreamWriter("XmlErrorlog.txt"))
+                {
+                    f.WriteLine(e.Message);
+                    f.WriteLine(e.InnerException);
+                    f.WriteLine(e.StackTrace);
+                    f.Flush();
+                };
+
+            }
 
         }
 
