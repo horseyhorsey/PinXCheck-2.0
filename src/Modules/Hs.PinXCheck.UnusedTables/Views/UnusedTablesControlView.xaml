@@ -48,11 +48,11 @@
             </Rectangle>
         </Button>
 
-        <CheckBox Content="Enabled" VerticalAlignment="Center" IsChecked="{Binding Enabled}" Margin="5"
+        <CheckBox Content="Enabled" VerticalAlignment="Center" IsChecked="{Binding UnusedTableOptions.Enabled, UpdateSourceTrigger=PropertyChanged}" Margin="5"
                       Height="18"  ToolTip="Table enabled" />
-        <CheckBox Content="Dmd" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
-                      IsChecked="{Binding Dmd}" Height="18"  ToolTip="Hide Dmd"/>
-        <CheckBox Content="Translite" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
-                      IsChecked="{Binding Translite}" Height="18" ToolTip="Hide Backglass"/>
+        <CheckBox Content="Hide Dmd" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                      IsChecked="{Binding UnusedTableOptions.Dmd, UpdateSourceTrigger=PropertyChanged}" Height="18"  ToolTip="Hide Dmd"/>
+        <CheckBox Content="Hide Translite" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                      IsChecked="{Binding UnusedTableOptions.Translite, UpdateSourceTrigger=PropertyChanged}" Height="18" ToolTip="Hide Backglass"/>
     </DockPanel>
 </UserControl>

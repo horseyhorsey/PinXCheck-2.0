@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Models\TableFile.cs" />
     <Compile Include="Models\TableFiles.cs" />
+    <Compile Include="Models\UnusedTableOption.cs" />
     <Compile Include="Services\GetFilesService.cs" />
     <Compile Include="Services\IGetFilesService.cs" />
     <Compile Include="UnusedTablesModule.cs" />

@@ -31,7 +31,6 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
         public DelegateCommand<IList> SelectionChanged { get; private set; }
         public DelegateCommand<string> AddTablesCommand { get; private set; }
         public DelegateCommand ReplaceTableCommand { get; private set; }
-
         public DelegateCommand OpenFolderCommand { get; private set; } 
 
         #endregion
@@ -47,25 +46,11 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
             set { SetProperty(ref unusedTableList, value); }
         }
 
-        private bool enabled = true;
-        public bool Enabled
+        private UnusedTableOption _unusedTableOptions = new UnusedTableOption();
+        public UnusedTableOption UnusedTableOptions
         {
-            get { return enabled; }
-            set { SetProperty(ref enabled, value); }
-        }
-
-        private bool dmd = true;
-        public bool Dmd
-        {
-            get { return dmd; }
-            set { SetProperty(ref dmd, value); }
-        }
-
-        private bool translite = true;
-        public bool Translite
-        {
-            get { return translite; }
-            set { SetProperty(ref translite, value); }
+            get { return _unusedTableOptions; }
+            set { SetProperty(ref _unusedTableOptions, value); }
         }
         #endregion
 
@@ -153,7 +138,10 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                     _tablesRepo.PinballXTableList.Add(new PinballXTable()
                     {
                         Name = item.TableName,
-                        Description = item.TableName
+                        Description = item.TableName,
+                        Enabled = UnusedTableOptions.Enabled,
+                        HideDmd = UnusedTableOptions.Dmd,
+                        HideBackGlass = UnusedTableOptions.Translite
                     });
 
                     unusedTables.Remove(item);
@@ -171,9 +159,9 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                     {
                         Name = table.TableName,
                         Description = table.TableName,
-                        Enabled = Enabled,
-                        HideDmd = Dmd,
-                        HideBackGlass = Translite
+                        Enabled = UnusedTableOptions.Enabled,
+                        HideDmd = UnusedTableOptions.Dmd,
+                        HideBackGlass = UnusedTableOptions.Translite
                     });
                 }
 
