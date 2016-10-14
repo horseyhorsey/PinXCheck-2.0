@@ -27,7 +27,8 @@ namespace Hs.PinXCheck.Database.View.ViewModels
             set { SetProperty(ref masterTables, value); }
         }
 
-        public DelegateCommand SetNewDescriptionCommand { get; private set; } 
+        public DelegateCommand SetNewDescriptionCommand { get; private set; }
+        public DelegateCommand ExitViewCommand { get; private set; } 
 
         private string selectedTableInfo;
         private IEventAggregator _eventAggregator;
@@ -56,6 +57,11 @@ namespace Hs.PinXCheck.Database.View.ViewModels
 
             SetNewDescriptionCommand = new DelegateCommand(SetNewDescription);
 
+            ExitViewCommand = new DelegateCommand(() =>
+            {
+                ExitView();
+            });
+
         }
 
         private void SetNewDescription()
@@ -71,6 +77,12 @@ namespace Hs.PinXCheck.Database.View.ViewModels
             tableToEdit.Manufacturer = currentItem.Manufacturer;
 
             _eventAggregator.GetEvent<RefreshMainDatabaseEvent>().Publish("");
+
+            ExitView();
+        }
+
+        private void ExitView()
+        {
             _eventAggregator.GetEvent<DisableControlsEvent>().Publish(true);
 
             _regionManager.RequestNavigate(RegionNames.ContentRegion, "DatabaseView");

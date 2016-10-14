@@ -5,6 +5,7 @@
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              prism:ViewModelLocator.AutoWireViewModel="True">
+
     <Grid Name="root">
         
         <Grid.RowDefinitions>
@@ -18,6 +19,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.InputBindings>
+            <KeyBinding Key="Esc" Command="{Binding ExitViewCommand}"/>
+        </Grid.InputBindings>
+        
         <DockPanel>
 
         <Label Margin="5" Content="Table to edit: " Grid.Row="0"/>
