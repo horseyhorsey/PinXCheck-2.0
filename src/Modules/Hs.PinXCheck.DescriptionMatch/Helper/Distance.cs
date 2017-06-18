@@ -45,6 +45,7 @@ namespace Hs.PinXCheck.DescriptionMatch.Helper
                         d[i - 1, j - 1] + cost);
                 }
             }
+
             // Step 7
             return d[n, m];
 

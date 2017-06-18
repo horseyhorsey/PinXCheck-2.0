@@ -28,7 +28,7 @@
         <Label Margin="5" Content="Table to edit: " Grid.Row="0"/>
         <Label Margin="5" Content="{Binding SelectedTableInfo}" Grid.Row="0"/>
         <TextBox metro:TextBoxHelper.ClearTextButton="True" Grid.Row="0"
-                 Margin="5"
+                 Margin="5" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                  metro:TextBoxHelper.Watermark="Filter machine"/>
         </DockPanel>
 
