@@ -10,7 +10,7 @@
             <DataGridTextColumn Header="Desc" Binding="{Binding Description}" IsReadOnly="True"/>
             <DataGridTextColumn Header="Year" Binding="{Binding Year}" IsReadOnly="True"/>
             <DataGridTextColumn Header="Matched" Binding="{Binding MatchedDescription}" IsReadOnly="True"/>
-            <DataGridTextColumn Header="Recommended" Binding="{Binding MatchedName}" IsReadOnly="True"/>
+            <!--<DataGridTextColumn Header="Recommended" Binding="{Binding MatchedName}" IsReadOnly="True"/>-->
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>
