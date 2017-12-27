@@ -92,7 +92,10 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                 });
             });
 
-            OpenFolderCommand = new DelegateCommand(() => Process.Start(_selectedSrv.CurrentTablePath));
+            OpenFolderCommand = new DelegateCommand(() =>
+            {
+                Process.Start(_selectedSrv.CurrentTablePath);
+            }, () => !string.IsNullOrWhiteSpace(_selectedSrv.CurrentTablePath));
 
             _eventAggregator.GetEvent<UpdatedUnusedTables>().Subscribe(GetUnusedTables);
 
