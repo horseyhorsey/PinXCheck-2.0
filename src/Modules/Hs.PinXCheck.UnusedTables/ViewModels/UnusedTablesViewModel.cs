@@ -92,11 +92,29 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                 });
             });
 
-            OpenFolderCommand = new DelegateCommand(() => Process.Start(_selectedSrv.CurrentTablePath));
+            OpenFolderCommand = new DelegateCommand(() =>
+            {
+                Process.Start(_selectedSrv.CurrentTablePath);
+            }, () => TableFolderExists());
 
             _eventAggregator.GetEvent<UpdatedUnusedTables>().Subscribe(GetUnusedTables);
 
             //GetUnusedTables("");
+        }
+
+        /// <summary>
+        /// Does the Tables folder exist
+        /// </summary>
+        /// <returns></returns>
+        private bool TableFolderExists()
+        {
+            if (string.IsNullOrWhiteSpace(_selectedSrv.CurrentTablePath))
+                return false;
+
+            if (!Directory.Exists(_selectedSrv.CurrentTablePath))
+                return false;
+
+            return true;
         }
 
         #region Methods
@@ -171,11 +189,16 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
 
         }
 
-        private void GetUnusedTables(string tableFolder)
-        {
+        /// <summary>
+        /// Gets the unused table from event.
+        /// </summary>
+        /// <param name="o">NEVER USED</param>
+        private void GetUnusedTables(object o)
+        {            
             try
             {
                 var tablesPath = _selectedSrv.CurrentTablePath;
+                this.OpenFolderCommand.RaiseCanExecuteChanged();
 
                 var getFileService = new GetFilesService();
 

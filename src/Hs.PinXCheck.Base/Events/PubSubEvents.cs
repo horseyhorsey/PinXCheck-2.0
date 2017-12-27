@@ -35,7 +35,7 @@ namespace Hs.PinXCheck.Base.Events
     }
 
 
-    public class UpdatedUnusedTables : PubSubEvent<string>
+    public class UpdatedUnusedTables : PubSubEvent<object>
     {
 
     }
