@@ -4,9 +4,10 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <DockPanel Background="{DynamicResource AccentColorBrush}"  LastChildFill="False">
+        
         <Button Margin="2" Grid.Column="2" Grid.Row="10" 
                 HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" 
-                Command="{Binding OpenFolderCommand}" CommandParameter=""
+                Command="{Binding OpenFolderCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter=""
                 ToolTip="Open tables folder" Style="{DynamicResource AccentedSquareButtonStyle}">
             <Rectangle Width="18" Height="20" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}">
                 <Rectangle.OpacityMask>

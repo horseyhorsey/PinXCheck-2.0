@@ -7,6 +7,7 @@
 
     <UserControl.Resources>
         
+        <!--RED / GREEN HAVE MISS TABLES-->
         <Style TargetType="{x:Type DataGridCell}">
             <Style.Triggers>
                 <DataTrigger 
@@ -58,7 +59,10 @@
             <RowDefinition Height="90"></RowDefinition>
             <RowDefinition Height="90"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <GroupBox Header="Database Editor View" Grid.RowSpan="4">
+            
+            <!--MAIN DATAGRID-->
             <DataGrid BorderThickness="2" CanUserAddRows="false" x:Name="DatabaseGrid" IsSynchronizedWithCurrentItem="True"
                       ItemsSource="{Binding TableList,UpdateSourceTrigger=PropertyChanged}"
                       AutoGenerateColumns="False" CanUserReorderColumns="False"
@@ -83,9 +87,13 @@
                     
                 </i:Interaction.Triggers>
                 
+                <!--DATAGRID CONTEXT MENU-->
                 <DataGrid.ContextMenu>
+                    
                     <ContextMenu x:Name="tablesContext">
-                        <MenuItem Header="Play table"></MenuItem>
+                        
+                        <MenuItem Header="Play table" Command="{Binding LaunchTableCommand}"></MenuItem>
+                        
                         <MenuItem Header="Launch editor" x:Name="LEditor" Visibility="Hidden"></MenuItem>
                         <MenuItem Header="Camera Mode" Visibility="Hidden">
                             <MenuItem Header="Load Camera" ToolTip="Launch to camera mode"></MenuItem>
