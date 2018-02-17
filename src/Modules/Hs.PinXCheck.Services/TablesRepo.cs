@@ -20,17 +20,20 @@ namespace Hs.PinXCheck.Services
             UnMatchedTableList = new UnMatchedTables();
         }
 
-
+        #region Properties
         public PinballXTables PinballXTableList { get; set; }
+        public PinballXTables MultiPinballXTableList { get; set; } = new PinballXTables();
         public MasterTables MasterTableList { get; set; }
         public UnMatchedTables UnMatchedTableList { get; set; }
+        #endregion
 
+        #region Public Methods
         public void GetMasterTables()
         {
 
             System.Reflection.Assembly assembly =
                 this.GetType().Assembly;
-            
+
             Stream stream = assembly.GetManifestResourceStream(
                 "Hs.PinXCheck.Services.Resource.IPDBBigList.txt");
 
@@ -73,8 +76,10 @@ namespace Hs.PinXCheck.Services
         {
             PinballXTableList.Clear();
             UnMatchedTableList.Clear();
+            MultiPinballXTableList?.Clear();
+
             try
-            {                
+            {
                 var xdoc = new XmlDocument();
 
                 xdoc.Load(pinballXDatabase);
@@ -96,8 +101,8 @@ namespace Hs.PinXCheck.Services
                 }
 
             }
-            catch (Exception e) {
-
+            catch (Exception e)
+            {            
                 using (var f = new StreamWriter("XmlErrorlog.txt"))
                 {
                     f.WriteLine(e.Message);
@@ -105,104 +110,14 @@ namespace Hs.PinXCheck.Services
                     f.WriteLine(e.StackTrace);
                     f.Flush();
                 };
-
             }
 
-        }
-
-        private async Task<PinballXTable> GetTable(XmlNode node, string tableFolder)
-        {
-            var table = await Task.Run(async () =>
-           {
-               string rom = string.Empty, manu = string.Empty;
-               var year = 2015;
-
-               var name = node.SelectSingleNode("@name").InnerText;
-               var desc = node.SelectSingleNode("description").InnerText;
-
-               if (node.SelectSingleNode("rom") != null)
-                   if (!string.IsNullOrEmpty(node.SelectSingleNode("rom").InnerText))
-                       rom = node.SelectSingleNode("rom").InnerText;
-                   else
-                       rom = string.Empty;
-
-               if (node.SelectSingleNode("manufacturer") != null)
-                   manu = node.SelectSingleNode("manufacturer").InnerText;
-
-               if (node.SelectSingleNode("year") != null)
-                   if (!string.IsNullOrEmpty(node.SelectSingleNode("year").InnerText))
-                       year = Int32.Parse(node.SelectSingleNode("year").InnerText);
-                   else
-                       year = 2015;
-
-               string type;
-               if (node.SelectSingleNode("type") != null)
-                   type = node.SelectSingleNode("type").InnerText;
-               else
-                   type = "SS";
-
-               string author;
-               if (node.SelectSingleNode("author") != null)
-                   author = node.SelectSingleNode("author").InnerText;
-               else
-                   author = "";
-
-               string genre;
-               if (node.SelectSingleNode("genre") != null)
-                   genre = node.SelectSingleNode("genre").InnerText;
-               else
-                   genre = "";
-
-               bool hidedmd;
-               if (node.SelectSingleNode("hidedmd") != null)
-                   hidedmd = Convert.ToBoolean(node.SelectSingleNode("hidedmd").InnerText);
-               else
-                   hidedmd = true;
-               bool hidebackglass;
-               if (node.SelectSingleNode("hidebackglass") != null)
-                   hidebackglass = Convert.ToBoolean(node.SelectSingleNode("hidebackglass").InnerText);
-               else
-                   hidebackglass = true;
-               bool enabled;
-               if (node.SelectSingleNode("enabled") != null)
-                   enabled = Convert.ToBoolean(node.SelectSingleNode("enabled").InnerText);
-               else
-                   enabled = true;
-
-               int rating;
-               if (node.SelectSingleNode("//rating") != null)
-                   rating = Int32.Parse(node.SelectSingleNode("rating").InnerText);
-               else
-                   rating = 0;
-                // Read from exe tag if the alternateExe isn't used.
-                string altExe;
-               if (node.SelectSingleNode("alternateExe") != null)
-                   altExe = node.SelectSingleNode("alternateExe").InnerText;
-               else if (node.SelectSingleNode("exe") != null)
-                   altExe = node.SelectSingleNode("exe").InnerText;
-               else
-                   altExe = " ";
-
-               bool desktop;
-               if (node.SelectSingleNode("Desktop") != null)
-                   desktop = Convert.ToBoolean(node.SelectSingleNode("Desktop").InnerText);
-               else
-                   desktop = false;
-
-
-               return await CreateTable(name, desc, rom, manu, year, type, hidedmd, hidebackglass, altExe, enabled, rating, desktop, genre, author);
-
-           });
-
-
-
-            return table;
         }
 
         public async Task<PinballXTable> CreateTable(string name, string desc, string rom, string manu, int year,
             string type, bool hideDmd, bool hideBg, string altExe, bool enabled, int rating, bool desktop, string genre, string author)
         {
-            return  await Task.Run(() => new PinballXTable()
+            return await Task.Run(() => new PinballXTable()
             {
                 Name = name,
                 Description = desc,
@@ -306,6 +221,96 @@ namespace Hs.PinXCheck.Services
                 return false;
             }
 
+        } 
+        #endregion
+
+        private async Task<PinballXTable> GetTable(XmlNode node, string tableFolder)
+        {
+            var table = await Task.Run(async () =>
+            {
+                string rom = string.Empty, manu = string.Empty;
+                var year = 2015;
+
+                var name = node.SelectSingleNode("@name").InnerText;
+                var desc = node.SelectSingleNode("description").InnerText;
+
+                if (node.SelectSingleNode("rom") != null)
+                    if (!string.IsNullOrEmpty(node.SelectSingleNode("rom").InnerText))
+                        rom = node.SelectSingleNode("rom").InnerText;
+                    else
+                        rom = string.Empty;
+
+                if (node.SelectSingleNode("manufacturer") != null)
+                    manu = node.SelectSingleNode("manufacturer").InnerText;
+
+                if (node.SelectSingleNode("year") != null)
+                    if (!string.IsNullOrEmpty(node.SelectSingleNode("year").InnerText))
+                        year = Int32.Parse(node.SelectSingleNode("year").InnerText);
+                    else
+                        year = 2015;
+
+                string type;
+                if (node.SelectSingleNode("type") != null)
+                    type = node.SelectSingleNode("type").InnerText;
+                else
+                    type = "SS";
+
+                string author;
+                if (node.SelectSingleNode("author") != null)
+                    author = node.SelectSingleNode("author").InnerText;
+                else
+                    author = "";
+
+                string genre;
+                if (node.SelectSingleNode("genre") != null)
+                    genre = node.SelectSingleNode("genre").InnerText;
+                else
+                    genre = "";
+
+                bool hidedmd;
+                if (node.SelectSingleNode("hidedmd") != null)
+                    hidedmd = Convert.ToBoolean(node.SelectSingleNode("hidedmd").InnerText);
+                else
+                    hidedmd = true;
+                bool hidebackglass;
+                if (node.SelectSingleNode("hidebackglass") != null)
+                    hidebackglass = Convert.ToBoolean(node.SelectSingleNode("hidebackglass").InnerText);
+                else
+                    hidebackglass = true;
+                bool enabled;
+                if (node.SelectSingleNode("enabled") != null)
+                    enabled = Convert.ToBoolean(node.SelectSingleNode("enabled").InnerText);
+                else
+                    enabled = true;
+
+                int rating;
+                if (node.SelectSingleNode("//rating") != null)
+                    rating = Int32.Parse(node.SelectSingleNode("rating").InnerText);
+                else
+                    rating = 0;
+                // Read from exe tag if the alternateExe isn't used.
+                string altExe;
+                if (node.SelectSingleNode("alternateExe") != null)
+                    altExe = node.SelectSingleNode("alternateExe").InnerText;
+                else if (node.SelectSingleNode("exe") != null)
+                    altExe = node.SelectSingleNode("exe").InnerText;
+                else
+                    altExe = " ";
+
+                bool desktop;
+                if (node.SelectSingleNode("Desktop") != null)
+                    desktop = Convert.ToBoolean(node.SelectSingleNode("Desktop").InnerText);
+                else
+                    desktop = false;
+
+
+                return await CreateTable(name, desc, rom, manu, year, type, hidedmd, hidebackglass, altExe, enabled, rating, desktop, genre, author);
+
+            });
+
+
+
+            return table;
         }
 
     }
