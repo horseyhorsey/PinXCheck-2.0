@@ -19,6 +19,8 @@ namespace Hs.PinXCheck.Base.Interfaces
 
         void GetMasterTables();
 
+        bool GetTableFileName(string tablePath);
+
         bool MatchDescriptionsAsync(PinballXTable table);
 
         bool MatchDescription(string desc);

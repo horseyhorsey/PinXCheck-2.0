@@ -13,6 +13,14 @@ namespace Hs.PinXCheck.Services
 {
     public class TablesRepo : ITablesRepo
     {
+
+        public TablesRepo()
+        {
+            PinballXTableList = new PinballXTables();
+            UnMatchedTableList = new UnMatchedTables();
+        }
+
+
         public PinballXTables PinballXTableList { get; set; }
         public MasterTables MasterTableList { get; set; }
         public UnMatchedTables UnMatchedTableList { get; set; }
@@ -240,16 +248,20 @@ namespace Hs.PinXCheck.Services
             return matched;
         }
 
-        public bool GetTableFileName(string tablesPathName)
+        /// <summary>
+        /// Gets whether a table exists
+        /// </summary>
+        /// <param name="tablePath">The full table path</param>
+        /// <returns></returns>
+        public bool GetTableFileName(string tablePath)
         {
             var exist = false;
             try
             {
-                if (File.Exists(tablesPathName + ".vpt") || File.Exists(tablesPathName + ".vpx") || File.Exists(tablesPathName + ".fpt"))
+                if (File.Exists(tablePath + ".vpt") || File.Exists(tablePath + ".vpx") || File.Exists(tablePath + ".fpt") || File.Exists(tablePath + ".vp5"))
                 {
                     exist = true;
                 }
-                //exist = false;
             }
             catch (Exception) { exist = false; }
 
