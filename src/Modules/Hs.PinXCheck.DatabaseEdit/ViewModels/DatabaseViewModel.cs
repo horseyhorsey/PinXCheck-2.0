@@ -2,7 +2,6 @@
 using Hs.PinXCheck.Base.PrismBase;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +14,7 @@ using Prism.Regions;
 using Hs.PinXCheck.Base.Constants;
 using System.Collections;
 using Hs.Services.VisualPinball;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Threading;
+using System.IO;
 
 namespace Hs.PinXCheck.Database.View.ViewModels
 {
@@ -64,7 +61,8 @@ namespace Hs.PinXCheck.Database.View.ViewModels
         #endregion
 
         #region Constructors
-        public DatabaseViewModel(IEventAggregator ea, ITablesRepo tableRepo, ISelectedService selectedService, IRegionManager regionManager
+        public DatabaseViewModel(IEventAggregator ea, ITablesRepo tableRepo, 
+             ISelectedService selectedService, IRegionManager regionManager
             , ISettingsRepo settings)
         {
             _eventAggregator = ea;
@@ -73,6 +71,8 @@ namespace Hs.PinXCheck.Database.View.ViewModels
             _selectedService = selectedService;
             _settings = settings;
 
+            TableList = new ListCollectionView(_tableRepo.PinballXTableList);
+
             SelectedGames = new List<PinballXTable>();
 
             _eventAggregator.GetEvent<DatabaseChanged>().Subscribe(UpdateCurrentDatabase);
@@ -80,9 +80,6 @@ namespace Hs.PinXCheck.Database.View.ViewModels
             _eventAggregator.GetEvent<ReplaceExecutableEvent>().Subscribe(UpdateExecutable);
             _eventAggregator.GetEvent<GetTableInfoEvent>().Subscribe(GetTableInfo);
             _eventAggregator.GetEvent<SetExtraTableOptionsEvent>().Subscribe(SetTableOptions);
-
-            _tableRepo.PinballXTableList = new PinballXTables();
-            _tableRepo.UnMatchedTableList = new UnMatchedTables();
 
             RemoveTableCommand = new DelegateCommand(() =>
             {
@@ -149,8 +146,6 @@ namespace Hs.PinXCheck.Database.View.ViewModels
             //Why 2 events??
             _eventAggregator.GetEvent<DescriptionUpdatedEvent>().Subscribe(RefreshTables);
             _eventAggregator.GetEvent<RefreshMainDatabaseEvent>().Subscribe(RefreshTables);      
-            
-                  
 
         }
 
@@ -162,13 +157,12 @@ namespace Hs.PinXCheck.Database.View.ViewModels
             var dataGrid = obj as System.Windows.Controls.DataGrid;
 
             currentColumn = dataGrid.CurrentColumn.Header.ToString();
-
+            var table = dataGrid.CurrentItem as PinballXTable;
+            
             if (currentColumn == "Description")
             {
 
-                TableList.CurrentChanged -= TableList_CurrentChanged;
-
-                var table = dataGrid.CurrentItem as PinballXTable;
+                TableList.CurrentChanged -= TableList_CurrentChanged;                
 
                 var matched = _tableRepo.MatchDescription(table.Description);
 
@@ -192,6 +186,10 @@ namespace Hs.PinXCheck.Database.View.ViewModels
                 }
 
                 TableList.CurrentChanged += TableList_CurrentChanged;
+            }
+            else if (currentColumn == "Table File")
+            {
+               table.TableFileExists = _tableRepo.GetTableFileName(Path.Combine(_selectedService.CurrentTablePath, table.Name));                
             }
         }
 

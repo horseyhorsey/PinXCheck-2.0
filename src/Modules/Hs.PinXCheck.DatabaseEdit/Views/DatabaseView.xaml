@@ -59,8 +59,22 @@
             <RowDefinition Height="90"></RowDefinition>
             <RowDefinition Height="90"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <GroupBox Header="Database Editor View" Grid.RowSpan="4">
+
+        <GroupBox Grid.RowSpan="4">
+
+            <GroupBox.Header>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Database Editor View" Margin="3"/>
+
+                    <TextBlock Text=" | Items Count:" Margin="3"/>
+                    <TextBlock Text="{Binding ElementName=DatabaseGrid, Path=Items.Count}" Margin="3"/>
+
+                    <TextBlock Text=" | Selected Items Count:" Margin="3"/>
+                    <TextBlock Text="{Binding ElementName=DatabaseGrid, Path=SelectedItems.Count}" Margin="3"/>
+                </StackPanel>
+
+            </GroupBox.Header>
             
             <!--MAIN DATAGRID-->
             <DataGrid BorderThickness="2" CanUserAddRows="false" x:Name="DatabaseGrid" IsSynchronizedWithCurrentItem="True"
