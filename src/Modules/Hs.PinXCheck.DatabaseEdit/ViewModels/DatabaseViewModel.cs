@@ -114,6 +114,9 @@ namespace Hs.PinXCheck.Database.View.ViewModels
                 if (string.IsNullOrWhiteSpace(exe))
                     exe = _selectedService.CurrentSystemDefaultExecutable;
 
+                if (string.IsNullOrEmpty(tName))
+                    return;
+
                 if (x == "Editor")
                 {
                     _visualPinball.LaunchVp(tpath, tName, exe, wPath, true, false);

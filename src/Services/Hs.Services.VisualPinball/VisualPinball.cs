@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Hs.Services.VisualPinball
 {
@@ -404,21 +405,25 @@ namespace Hs.Services.VisualPinball
             bool isVpx = IsTableVpx(table);
             //if (!File.Exists()) return;            
 
-            if (script)
+            Task.Run(() =>
             {
-                _ahk.ExecFunction("LoadVP", workingPath, vpExe);
-                _ahk.ExecFunction("LoadTableToEditor", tPath, tName);
-                _ahk.ExecFunction("ActivateScript", Convert.ToInt32(isVpx).ToString());
-            }                
-            else if (editor)
-            {
-                _ahk.ExecFunction("LoadVP", workingPath, vpExe);
-                _ahk.ExecFunction("LoadTableToEditor", tPath, tName);
-            }                
-            else
-            {
-                _ahk.ExecFunction("PlayTable", vp, table, Convert.ToInt32(isVpx).ToString());
-            }
+
+                if (script)
+                {
+                    _ahk.ExecFunction("LoadVP", workingPath, vpExe);
+                    _ahk.ExecFunction("LoadTableToEditor", tPath, tName);
+                    _ahk.ExecFunction("ActivateScript", Convert.ToInt32(isVpx).ToString());
+                }
+                else if (editor)
+                {
+                    _ahk.ExecFunction("LoadVP", workingPath, vpExe);
+                    _ahk.ExecFunction("LoadTableToEditor", tPath, tName);
+                }
+                else
+                {
+                    _ahk.ExecFunction("PlayTable", vp, table, Convert.ToInt32(isVpx).ToString());
+                }
+            });
         }
 
         private bool IsTableVpx(string table)
