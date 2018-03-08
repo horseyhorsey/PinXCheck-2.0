@@ -43,11 +43,10 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
             _selectedService = selectedService;
             _settingsRepo = settings;
 
-            DbEditOption = new DbEditOption();
-
-            _eventAggregator.GetEvent<SystemSelected>().Subscribe(PopulateExecutables);            
+            DbEditOption = new DbEditOption();            
 
             PopulateExecutables("");
+            _eventAggregator.GetEvent<SystemSelected>().Subscribe(PopulateExecutables);                                  
 
             ReplaceExeCommand = new DelegateCommand<string>(x =>
             {
@@ -67,6 +66,13 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
             });
 
             SetOptionsCommand = new DelegateCommand<string>(SetOptionsForTable);
+        }
+
+        private List<string> _exeList = new List<string>();
+        public List<string> ExeList
+        {
+            get { return _exeList; }
+            set { SetProperty(ref _exeList, value); }
         }
 
         private void SetOptionsForTable(string onOff)
@@ -106,22 +112,22 @@ namespace Hs.PinXCheck.Database.Editing.ViewModels
 
         private void GetExecutablesForSystem(string emulatorPath)
         {
+            ExeList.Clear();
+
             try
             {
                 var directoryInfo = new DirectoryInfo(emulatorPath);
 
-                var files = directoryInfo.GetFiles("*.exe");
-
-                var exeList = new List<string>();
+                var files = directoryInfo.GetFiles("*.exe");                               
 
                 for (int index = 0; index < files.Length; index++)
                 {
                     var item = files[index];
 
-                    exeList.Add(item.Name);
+                    ExeList.Add(item.Name);
                 }
 
-                DbEditOption.ExecutableList = new ListCollectionView(exeList);
+                DbEditOption.ExecutableList = new ListCollectionView(ExeList);
 
             }
             catch (Exception) { }
