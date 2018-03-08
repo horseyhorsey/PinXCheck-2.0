@@ -80,6 +80,7 @@
             <DataGrid BorderThickness="2" CanUserAddRows="false" x:Name="DatabaseGrid" IsSynchronizedWithCurrentItem="True"
                       ItemsSource="{Binding TableList,UpdateSourceTrigger=PropertyChanged}"
                       AutoGenerateColumns="False" CanUserReorderColumns="False"
+                      ScrollViewer.IsDeferredScrollingEnabled="True"
                   CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
                   Background="#FF7C7C7C" Margin="0,1,0,4">
 
@@ -100,20 +101,35 @@
                     </i:EventTrigger>
                     
                 </i:Interaction.Triggers>
+
+                <DataGrid.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </DataGrid.ItemsPanel>
                 
                 <!--DATAGRID CONTEXT MENU-->
                 <DataGrid.ContextMenu>
                     
                     <ContextMenu x:Name="tablesContext">
                         
-                        <MenuItem Header="Play table" Command="{Binding LaunchTableCommand}"></MenuItem>
-                        
-                        <MenuItem Header="Launch editor" x:Name="LEditor" Visibility="Hidden"></MenuItem>
+                        <MenuItem Header="Play table"
+                                  Command="{Binding LaunchVpCommand}"
+                                  CommandParameter="Play"
+                                  ></MenuItem>
+
+                        <MenuItem Header="Launch editor" x:Name="LEditor" Visibility="Visible"
+                                  Command="{Binding LaunchVpCommand}"
+                                  CommandParameter="Editor"
+                                  ></MenuItem>
+                        <MenuItem Header="Launch to script" Visibility="Visible"
+                                  Command="{Binding LaunchVpCommand}"
+                                  CommandParameter="Script"
+                                  ></MenuItem>
                         <MenuItem Header="Camera Mode" Visibility="Hidden">
                             <MenuItem Header="Load Camera" ToolTip="Launch to camera mode"></MenuItem>
                             <MenuItem Header="Cam Setup" ToolTip="Reset table view to suggested Layout Guidline with no slope"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="Launch to script" Visibility="Hidden"></MenuItem>
                         <MenuItem Header="Basic Script" Visibility="Hidden" ToolTip="Load script %tablename%_Basic.vbs">
                             <MenuItem Header="Play Bsc Script" ToolTip="Load bsc script and play"></MenuItem>
                             <MenuItem Header="Edit Bsc Script" ToolTip="Load bsc script to editor"></MenuItem>

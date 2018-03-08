@@ -1,19 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoHotkey.Interop;
+using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Hs.Services.VisualPinball
 {
-    public class VisualPinball
+    public interface IVisualPinball
+    {
+        void LaunchVp(string tPath, string tName, string vpExe, string workingPath, bool editor = false, bool script = false);
+    }
+
+    public class VisualPinball : IVisualPinball
     {
         public const string SevenZipExe = @"7za.exe";
+        private AutoHotkeyEngine _ahk;
 
         public static string SevenZipPath { get; set; }
+
+        public VisualPinball()
+        {
+            _ahk = AutoHotkeyEngine.Instance;
+            _ahk.LoadFile("launch.ahk");
+        }
 
         /// <summary>
         /// Get table info from a Visual Pinball table
@@ -384,7 +394,40 @@ namespace Hs.Services.VisualPinball
         //}
 
 
+        public void LaunchVp(string tPath, string tName, string vpExe, string workingPath, bool editor = false, bool script = false)
+        {
+            var vp = Path.Combine(workingPath, vpExe);
+            var table = Path.Combine(tPath, tName);
 
+            if (!File.Exists(vp)) return;
+
+            bool isVpx = IsTableVpx(table);
+            //if (!File.Exists()) return;            
+
+            if (script)
+            {
+                _ahk.ExecFunction("LoadVP", workingPath, vpExe);
+                _ahk.ExecFunction("LoadTableToEditor", tPath, tName);
+                _ahk.ExecFunction("ActivateScript", Convert.ToInt32(isVpx).ToString());
+            }                
+            else if (editor)
+            {
+                _ahk.ExecFunction("LoadVP", workingPath, vpExe);
+                _ahk.ExecFunction("LoadTableToEditor", tPath, tName);
+            }                
+            else
+            {
+                _ahk.ExecFunction("PlayTable", vp, table, Convert.ToInt32(isVpx).ToString());
+            }
+        }
+
+        private bool IsTableVpx(string table)
+        {
+            if (File.Exists(table + ".vpx"))
+                return true;
+
+            return false;
+        }
 
     }
 }
