@@ -11,6 +11,8 @@ namespace Hs.Services.VisualPinball
     public interface IVisualPinball
     {
         void LaunchVp(string tPath, string tName, string vpExe, string workingPath, bool editor = false, bool script = false);
+
+        string GetInfoVisualPinball(int sysType, string tableName, string tablePath, string xmlElement);
     }
 
     public class VisualPinball : IVisualPinball

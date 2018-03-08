@@ -345,9 +345,7 @@ namespace Hs.PinXCheck.Database.View.ViewModels
         }
 
         private void GetTableInfo(string infoType)
-        {
-            var visualPinballInfo = new VisualPinball();
-
+        {            
             VisualPinball.SevenZipPath =
                 _settings.PinXCheckSettings.PinballXPath + "\\" + VisualPinball.SevenZipExe;
 
@@ -363,7 +361,7 @@ namespace Hs.PinXCheck.Database.View.ViewModels
                     case "Rom":
                         if (_selectedService.CurrentSystemType == 1)
                         {
-                            setName = visualPinballInfo.GetInfoVisualPinball(_selectedService.CurrentSystemType,
+                            setName = _visualPinball.GetInfoVisualPinball(_selectedService.CurrentSystemType,
                                table.Name, _selectedService.CurrentTablePath, infoType);
 
                             setRomName(setName, table.Name);
@@ -372,17 +370,17 @@ namespace Hs.PinXCheck.Database.View.ViewModels
                     case "Author":
                         if (_selectedService.CurrentSystemType == 1)
                         {
-                            setName = visualPinballInfo.GetInfoVisualPinball(_selectedService.CurrentSystemType,
+                            setName = _visualPinball.GetInfoVisualPinball(_selectedService.CurrentSystemType,
                                table.Name, _selectedService.CurrentTablePath, infoType);
 
                             setAuthorName(setName, table.Name);
                         }
                         else if (_selectedService.CurrentSystemType == 2)
                         {
-                            setName = visualPinballInfo.GetInfoFuturePinball(_selectedService.CurrentSystemType,
-                                table.Name, _selectedService.CurrentTablePath);
+                            //setName = _visualPinball.GetInfoFuturePinball(_selectedService.CurrentSystemType,
+                            //    table.Name, _selectedService.CurrentTablePath);
 
-                            setAuthorName(setName, table.Name);
+                            //setAuthorName(setName, table.Name);
                         }
                         break;
                     default:
