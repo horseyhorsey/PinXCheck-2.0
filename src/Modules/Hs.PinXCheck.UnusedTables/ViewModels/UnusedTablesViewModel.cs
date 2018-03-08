@@ -159,7 +159,8 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                         Description = item.TableName,
                         Enabled = UnusedTableOptions.Enabled,
                         HideDmd = UnusedTableOptions.Dmd,
-                        HideBackGlass = UnusedTableOptions.Translite
+                        HideBackGlass = UnusedTableOptions.Translite,
+                        TableFileExists = true
                     });
 
                     unusedTables.Remove(item);
@@ -179,7 +180,8 @@ namespace Hs.PinXCheck.UnusedTables.ViewModels
                         Description = table.TableName,
                         Enabled = UnusedTableOptions.Enabled,
                         HideDmd = UnusedTableOptions.Dmd,
-                        HideBackGlass = UnusedTableOptions.Translite
+                        HideBackGlass = UnusedTableOptions.Translite,
+                        TableFileExists = true
                     });
                 }
 
