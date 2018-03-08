@@ -11,6 +11,7 @@ using Hs.PinXCheck.SystemViewer.Views;
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Settings;
 using Hs.PinXCheck.Services;
+using Hs.Services.VisualPinball;
 
 namespace Hs.PinXCheck.Shell
 {
@@ -67,6 +68,8 @@ namespace Hs.PinXCheck.Shell
             Container.RegisterInstance<ISystemsRepo>(Container.Resolve<SystemsRepo>());
             Container.RegisterInstance<ITablesRepo>(Container.Resolve<TablesRepo>());
             Container.RegisterInstance<IFileService>(Container.Resolve<FileService>());
+
+            Container.RegisterInstance<IVisualPinball>(Container.Resolve<VisualPinball>());
 
         }
     }

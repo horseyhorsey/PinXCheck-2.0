@@ -19,5 +19,7 @@ namespace Hs.PinXCheck.Base.Services
         string SelectedDescription { get; set; }
 
         string SelectedPublisher { get; set; }
+
+        string CurrentSystemDefaultExecutable { get; set; }
     }
 }

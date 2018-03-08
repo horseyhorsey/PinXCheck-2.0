@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+
+    <!--RED / GREEN HAVE MISS TABLES-->
+    <Style TargetType="{x:Type DataGridCell}">
+        <Style.Triggers>
+            <DataTrigger 
+                    Binding="{Binding RelativeSource={RelativeSource Self},Path=Content.Text}" 
+                     Value="True">
+                <Setter Property="Background" Value="#263DDE36"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=Content.Text}"
+                             Value="False">
+                <Setter Property="Background" Value="#26FF5454"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DataGridStyleBase" TargetType="DataGrid">
+
+        <Setter Property="Margin" Value="0,1,0,4"/>
+        <Setter Property="Background" Value="#FF7C7C7C"/>
+        <Setter Property="BorderThickness" Value="2"/>
+
+    </Style>
+
+</ResourceDictionary>

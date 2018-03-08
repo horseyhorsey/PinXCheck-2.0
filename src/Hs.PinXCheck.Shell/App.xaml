@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Green.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Hs.PinXCheck.Resources;component/DataGridTemplates.xaml"/>
                 <ResourceDictionary Source="/Resources/Icons.xaml"/>
                 <ResourceDictionary Source="/Resources/HsResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>

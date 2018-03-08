@@ -106,6 +106,7 @@ namespace Hs.PinXCheck.SystemViewer.ViewModels
                 _selectedService.CurrentTablePath = currentSystemName.TablePath;
                 _selectedService.CurrentWorkingPath = currentSystemName.WorkingPath;
                 _selectedService.CurrentSystemType = currentSystemName.PinXType;
+                _selectedService.CurrentSystemDefaultExecutable = currentSystemName.Executable;
 
                 _eventAggregator.GetEvent<SystemSelected>().Publish(currentSystemName.Name);
             }

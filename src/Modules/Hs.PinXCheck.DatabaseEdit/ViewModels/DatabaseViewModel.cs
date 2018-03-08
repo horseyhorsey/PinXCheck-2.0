@@ -15,6 +15,7 @@ using Hs.PinXCheck.Base.Constants;
 using System.Collections;
 using Hs.Services.VisualPinball;
 using System.IO;
+using System.Diagnostics;
 
 namespace Hs.PinXCheck.Database.View.ViewModels
 {
@@ -25,6 +26,7 @@ namespace Hs.PinXCheck.Database.View.ViewModels
         private ITablesRepo _tableRepo;
         private ISelectedService _selectedService;
         private ISettingsRepo _settings;
+        private IVisualPinball _visualPinball;
         private IRegionManager _regionManager;
         #endregion
 
@@ -57,19 +59,21 @@ namespace Hs.PinXCheck.Database.View.ViewModels
         public DelegateCommand<string> NavigateCommand { get; private set; }
         public DelegateCommand<IList> SelectionChanged { get; set; }
         public DelegateCommand<object> RowEditEndedCommand { get; private set; }
+        public DelegateCommand<string> LaunchVpCommand { get; private set; }        
 
         #endregion
 
         #region Constructors
         public DatabaseViewModel(IEventAggregator ea, ITablesRepo tableRepo, 
              ISelectedService selectedService, IRegionManager regionManager
-            , ISettingsRepo settings)
+            , ISettingsRepo settings, IVisualPinball visualPinball)
         {
             _eventAggregator = ea;
             _regionManager = regionManager;
             _tableRepo = tableRepo;
             _selectedService = selectedService;
             _settings = settings;
+            _visualPinball = visualPinball;
 
             TableList = new ListCollectionView(_tableRepo.PinballXTableList);
 
@@ -98,6 +102,22 @@ namespace Hs.PinXCheck.Database.View.ViewModels
                 _regionManager.RequestNavigate(RegionNames.ContentRegion, x);
                 _eventAggregator.GetEvent<DisableControlsEvent>().Publish(false);
 
+            });
+
+            LaunchVpCommand = new DelegateCommand<string>(x =>
+            {
+                if (x == "Editor")
+                {
+                    //this.SelectedGames[0];                    
+                    var exe = this.SelectedGames[0].AlternateExe;
+                    var tpath = _selectedService.CurrentTablePath;
+                    var wPath = _selectedService.CurrentWorkingPath;
+                    var tName = _selectedService.SelectedTableName;
+
+                    if (string.IsNullOrWhiteSpace(exe))
+                        exe = _selectedService.CurrentSystemDefaultExecutable;
+                    _visualPinball.LaunchVp(tpath, tName, exe, wPath, "Full");
+                }                 
             });
 
             _eventAggregator.GetEvent<FilterEvent>().Subscribe(SetFilter);

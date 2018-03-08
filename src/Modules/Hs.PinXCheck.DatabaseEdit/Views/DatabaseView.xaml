@@ -108,7 +108,10 @@
                         
                         <MenuItem Header="Play table" Command="{Binding LaunchTableCommand}"></MenuItem>
                         
-                        <MenuItem Header="Launch editor" x:Name="LEditor" Visibility="Hidden"></MenuItem>
+                        <MenuItem Header="Launch editor" x:Name="LEditor" Visibility="Visible"
+                                  Command="{Binding LaunchVpCommand}"
+                                  CommandParameter="Editor"
+                                  ></MenuItem>
                         <MenuItem Header="Camera Mode" Visibility="Hidden">
                             <MenuItem Header="Load Camera" ToolTip="Launch to camera mode"></MenuItem>
                             <MenuItem Header="Cam Setup" ToolTip="Reset table view to suggested Layout Guidline with no slope"></MenuItem>

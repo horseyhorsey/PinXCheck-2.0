@@ -22,6 +22,8 @@ namespace Hs.PinXCheck.Base.Services
 
         public string SelectedPublisher { get; set; }
 
+        public string CurrentSystemDefaultExecutable { get; set; }
+
         /// <summary>
         /// Get imagesource from URI file link
         /// </summary>
