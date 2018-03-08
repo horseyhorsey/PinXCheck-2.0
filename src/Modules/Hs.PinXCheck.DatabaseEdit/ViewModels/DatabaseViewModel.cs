@@ -106,18 +106,26 @@ namespace Hs.PinXCheck.Database.View.ViewModels
 
             LaunchVpCommand = new DelegateCommand<string>(x =>
             {
+                //this.SelectedGames[0];                    
+                var exe = this.SelectedGames[0].AlternateExe;
+                var tpath = _selectedService.CurrentTablePath;
+                var wPath = _selectedService.CurrentWorkingPath;
+                var tName = _selectedService.SelectedTableName;
+                if (string.IsNullOrWhiteSpace(exe))
+                    exe = _selectedService.CurrentSystemDefaultExecutable;
+
                 if (x == "Editor")
                 {
-                    //this.SelectedGames[0];                    
-                    var exe = this.SelectedGames[0].AlternateExe;
-                    var tpath = _selectedService.CurrentTablePath;
-                    var wPath = _selectedService.CurrentWorkingPath;
-                    var tName = _selectedService.SelectedTableName;
-
-                    if (string.IsNullOrWhiteSpace(exe))
-                        exe = _selectedService.CurrentSystemDefaultExecutable;
-                    _visualPinball.LaunchVp(tpath, tName, exe, wPath, "Full");
-                }                 
+                    _visualPinball.LaunchVp(tpath, tName, exe, wPath, true, false);
+                }
+                else if (x == "Script")
+                {
+                    _visualPinball.LaunchVp(tpath, tName, exe, wPath, true, true);
+                }
+                else if (x == "Play")
+                {
+                    _visualPinball.LaunchVp(tpath, tName, exe, wPath, false, false);
+                }
             });
 
             _eventAggregator.GetEvent<FilterEvent>().Subscribe(SetFilter);
