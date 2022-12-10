@@ -41,9 +41,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hs.Services.VisualPinball",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Solution Items", "!Solution Items", "{33A60578-3704-4F4C-A00B-05D859AD8B66}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
-		LICENSE = LICENSE
-		README.md = README.md
+		..\.github\workflows\dotnet.yml = ..\.github\workflows\dotnet.yml
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoHotkey.Interop", "..\modules\AutoHotkey.Interop\src\AutoHotkey.Interop\AutoHotkey.Interop.csproj", "{700CB712-7B69-4964-8B43-8DE89B233232}"
