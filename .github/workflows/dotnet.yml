@@ -34,6 +34,7 @@ jobs:
     - name: Build
       shell: bash
       run: |
+        git submodule update --init --recursive
         git submodule update --remote
         tag=$(git describe --tags --abbrev=0)
         release_name="PinXCheck-$tag-${{ matrix.target }}"
