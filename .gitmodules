@@ -1,3 +1,6 @@
 [submodule "src/Modules/ahk"]
 	path = src/Modules/ahk
 	url = https://github.com/amazing-andrew/AutoHotkey.Interop
+[submodule "modules/AutoHotkey.Interop"]
+	path = modules/AutoHotkey.Interop
+	url = https://github.com/horseyhorsey/AutoHotkey.Interop

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hs.PinXCheck.Shell", "src\Hs.PinXCheck.Shell\Hs.PinXCheck.Shell.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
 EndProject
@@ -45,7 +45,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hs.PinXCheck.Media.Pane", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hs.PinXCheck.Resources", "Hs.PinXCheck.Resources\Hs.PinXCheck.Resources.csproj", "{F3605260-5751-42BE-8A38-F003D53045BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoHotkey.Interop", "src\Modules\ahk\src\AutoHotkey.Interop\AutoHotkey.Interop.csproj", "{2869DBFE-7762-4930-95EA-2B0C111CF353}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!SubModules", "!SubModules", "{AD78B3ED-D673-47D8-AE4E-63F3C77AAB18}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoHotkey.Interop", "modules\AutoHotkey.Interop\src\AutoHotkey.Interop\AutoHotkey.Interop.csproj", "{19485914-002D-47EF-8CB0-75F48939B80D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,14 +193,14 @@ Global
 		{F3605260-5751-42BE-8A38-F003D53045BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3605260-5751-42BE-8A38-F003D53045BF}.Release|x64.ActiveCfg = Release|Any CPU
 		{F3605260-5751-42BE-8A38-F003D53045BF}.Release|x64.Build.0 = Release|Any CPU
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Debug|x64.ActiveCfg = Debug|x64
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Debug|x64.Build.0 = Debug|x64
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Release|x64.ActiveCfg = Release|x64
-		{2869DBFE-7762-4930-95EA-2B0C111CF353}.Release|x64.Build.0 = Release|x64
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Debug|x64.Build.0 = Debug|Any CPU
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Release|x64.ActiveCfg = Release|Any CPU
+		{19485914-002D-47EF-8CB0-75F48939B80D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,7 +220,7 @@ Global
 		{F68FC934-7730-472D-8D7A-888112B23DD2} = {94D4980D-3423-44A8-83AD-80150D7874BE}
 		{62B7E5CE-FEAD-4AF7-86CC-BC1823F47D86} = {82A68D33-EA3E-442A-8416-1956D485CB51}
 		{7730D0A7-5771-4027-A026-D50BFA62E043} = {94D4980D-3423-44A8-83AD-80150D7874BE}
-		{2869DBFE-7762-4930-95EA-2B0C111CF353} = {94D4980D-3423-44A8-83AD-80150D7874BE}
+		{19485914-002D-47EF-8CB0-75F48939B80D} = {AD78B3ED-D673-47D8-AE4E-63F3C77AAB18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {045F3527-D9A9-4649-B7B3-B3BBDC186F17}
