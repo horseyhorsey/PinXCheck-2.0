@@ -7,7 +7,6 @@ using Prism.Modularity;
 using Hs.PinXCheck.Base.Constants;
 using Hs.PinXCheck.Base;
 using Hs.PinXCheck.Base.Services;
-using Hs.PinXCheck.SystemViewer.Views;
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Settings;
 using Hs.PinXCheck.Services;

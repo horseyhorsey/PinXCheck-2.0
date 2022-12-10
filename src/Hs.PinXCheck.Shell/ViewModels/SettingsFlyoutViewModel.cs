@@ -6,7 +6,7 @@ using Hs.PinXCheck.Shell.Models;
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.Services;
 using Prism.Events;
-using Hs.PinXCheck.Base.Events;
+using Hs.PinXCheck.Base;
 
 namespace Hs.PinXCheck.Shell.ViewModels
 {
@@ -14,7 +14,7 @@ namespace Hs.PinXCheck.Shell.ViewModels
     {
 
         #region Properties
-        public Setting.Settings PinXCheckSettings
+        public PinXCheckSettings PinXCheckSettings
         {
             get { return _pinXCheckSettingsRepo.PinXCheckSettings; }
             set { _pinXCheckSettingsRepo.PinXCheckSettings = value; }
@@ -73,7 +73,7 @@ namespace Hs.PinXCheck.Shell.ViewModels
             _eventAggreagator = ea;
 
             try { _pinXCheckSettingsRepo.LoadPinXCheckSettings(); }
-            catch (Exception e) { }
+            catch { }
 
             SetApplicationSettings();
 

@@ -2,13 +2,10 @@
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.PrismBase;
 using Hs.PinXCheck.Base.Services;
-using Prism.Commands;
+using Hs.PinXCheck.Domain.Model;
 using Prism.Events;
-using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -96,7 +93,7 @@ namespace Hs.PinXCheck.SystemViewer.ViewModels
         {
             try
             {
-                var currentSystemName = PinballXSystems.CurrentItem as PinballX.PinballXSystem;
+                var currentSystemName = PinballXSystems.CurrentItem as PinballXSystem;
 
                 _selectedService.CurrentSystem = currentSystemName.Name;
 

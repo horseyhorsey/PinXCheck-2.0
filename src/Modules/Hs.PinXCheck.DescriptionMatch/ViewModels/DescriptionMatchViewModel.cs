@@ -2,9 +2,9 @@
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.PrismBase;
 using Hs.PinXCheck.DescriptionMatch.Helper;
+using Hs.PinXCheck.Domain.Model;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -128,11 +128,11 @@ namespace Hs.PinXCheck.DescriptionMatch.ViewModels
             var masterDescriptionEdit = "";
             var rgx = new Regex(patterns);
             var count = 0;
-            var bestTableMatch = new VirtualPin.Database.PinballXTable();
+            var bestTableMatch = new PinballXTable();
 
             //clearMatchedDescriptions();
 
-            foreach (VirtualPin.Database.UnMatchedTable table in UnMatchedTables)
+            foreach (UnMatchedTable table in UnMatchedTables)
             {
                 var inputTableName = table.FileName;
                 var inputTableDesc = table.Description;
@@ -216,7 +216,7 @@ namespace Hs.PinXCheck.DescriptionMatch.ViewModels
                 }
                 count++;
                 //li.Add(bestTableMatch);
-                bestTableMatch = new VirtualPin.Database.PinballXTable();
+                bestTableMatch = new PinballXTable();
                 //var percentage = (Int32)Math.Round((double)(count * 100) / ScanCount);
                 //bw.ReportProgress(percentage);
 
@@ -230,7 +230,7 @@ namespace Hs.PinXCheck.DescriptionMatch.ViewModels
 
         private void clearMatchedDescriptions()
         {
-            foreach (VirtualPin.Database.UnMatchedTable item in UnMatchedTables)
+            foreach (UnMatchedTable item in UnMatchedTables)
             {
                 item.MatchedDescription = "";
             }
@@ -240,9 +240,9 @@ namespace Hs.PinXCheck.DescriptionMatch.ViewModels
         {
             try
             {
-                var tablesToRemove = new List<VirtualPin.Database.UnMatchedTable>();
+                var tablesToRemove = new List<UnMatchedTable>();
 
-                foreach (VirtualPin.Database.UnMatchedTable table in UnMatchedTables)
+                foreach (UnMatchedTable table in UnMatchedTables)
                 {
                     if (!string.IsNullOrEmpty(table.MatchedDescription)
                         && table.FlagRename)
@@ -267,7 +267,7 @@ namespace Hs.PinXCheck.DescriptionMatch.ViewModels
                 {
                     if (tablesToRemove.Count > 0)
                     {
-                        foreach (VirtualPin.Database.UnMatchedTable table in tablesToRemove)
+                        foreach (UnMatchedTable table in tablesToRemove)
                         {
                             _tableRepo.UnMatchedTableList.Remove(table);
                         }

@@ -5,12 +5,9 @@ using Hs.PinXCheck.Base.Services;
 using Hs.PinXCheck.Database.Editing.Models;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Windows.Data;
 
 namespace Hs.PinXCheck.Database.Editing.ViewModels

@@ -1,0 +1,60 @@
+name: .Net 472
+
+on:
+  push:
+    #branches: [ main, develop]
+    branches: [ master, develop/update ] # should just build the release when pull request is completed
+#  pull_request:
+#    branches: [ main ]
+
+jobs:
+  release:
+    name: Release
+    strategy:
+      matrix:
+        kind: ['windows']
+        include:
+          - kind: windows
+            os: windows-latest
+            target: win-x86
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v1
+      name: Checkout Code     
+
+    - name: SubModuleCheckout
+      shell: bash
+      run: |
+        git submodule update --init --recursive
+        git submodule update --remote
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1    
+     
+    - name: Restore NuGet Packages
+      run: nuget restore src/PinXCheck.2.sln
+ 
+    - name: Build
+      shell: bash
+      run: |
+        tag=$(git describe --tags --abbrev=0)
+        release_name="PinXCheck-$tag-${{ matrix.target }}"
+
+        # msbuild
+        # msbuild src/FlippingFlipsCOM.sln -c Release --runtime "${{ matrix.target }}" -o "$release_name"
+        msbuild.exe src/Hs.PinXCheck.Shell/Hs.PinXCheck.Shell.csproj -p:Configuration=Release -p:DeployOnBuild=true -p:Platform=x86 -p:OutputPath="../../${release_name}/"
+        7z a -tzip "${release_name}.zip" "./${release_name}/*"
+        
+        # Only need this for multiple platform
+        # rm -r "$release_name"
+
+    - name: Publish
+      uses: softprops/action-gh-release@v1
+      with:
+          tag_name: "2.0.0"
+          files: "PinXCheck*"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,12 +2,9 @@
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.PrismBase;
 using Hs.PinXCheck.Base.Services;
-using Hs.VirtualPin.Database;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
+using Hs.PinXCheck.Domain.Model;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.IO;

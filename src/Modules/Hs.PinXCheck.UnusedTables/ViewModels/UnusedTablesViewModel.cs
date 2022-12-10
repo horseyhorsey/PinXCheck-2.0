@@ -2,12 +2,11 @@
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.PrismBase;
 using Hs.PinXCheck.Base.Services;
+using Hs.PinXCheck.Domain.Model;
 using Hs.PinXCheck.UnusedTables.Models;
 using Hs.PinXCheck.UnusedTables.Services;
-using Hs.VirtualPin.Database;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using System;
 using System.Collections;
 using System.Collections.Generic;

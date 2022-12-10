@@ -1,17 +1,12 @@
-﻿using Hs.PinXCheck.Base.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hs.PinXCheck.Setting;
+﻿using Hs.PinXCheck.Base;
+using Hs.PinXCheck.Base.Interfaces;
 
 namespace Hs.PinXCheck.Settings
 {
     public class SettingsRepo : ISettingsRepo
     {
-        private Setting.Settings pinXCheckSettings = new Setting.Settings();
-        public Setting.Settings PinXCheckSettings
+        private PinXCheckSettings pinXCheckSettings = new PinXCheckSettings();
+        public PinXCheckSettings PinXCheckSettings
         {
             get { return pinXCheckSettings; }
             set { pinXCheckSettings = value; }

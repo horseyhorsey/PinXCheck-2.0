@@ -1,6 +1,4 @@
-﻿using Hs.PinXCheck.Base.Interfaces;
-using Hs.PinXCheck.Base.PrismBase;
-using Hs.PinXCheck.Settings;
+﻿using Hs.PinXCheck.Base.PrismBase;
 using Microsoft.Practices.Unity;
 using Prism.Regions;
 

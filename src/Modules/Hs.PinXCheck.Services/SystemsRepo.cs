@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hs.PinballX;
 using Hs.PinXCheck.Base.Interfaces;
+using Hs.PinXCheck.Domain.Model;
 
 namespace Hs.PinXCheck.Services
 {
