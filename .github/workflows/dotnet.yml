@@ -22,11 +22,17 @@ jobs:
     - uses: actions/checkout@v1
       name: Checkout Code     
 
+    - name: SubModuleCheckout
+      shell: bash
+      run: |
+        git submodule update --init --recursive
+        git submodule update --remote
+
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Setup NuGet
-      uses: nuget/setup-nuget@v1
+      uses: nuget/setup-nuget@v1    
      
     - name: Restore NuGet Packages
       run: nuget restore src/PinXCheck.2.sln
@@ -34,8 +40,6 @@ jobs:
     - name: Build
       shell: bash
       run: |
-        git submodule update --init --recursive
-        git submodule update --remote
         tag=$(git describe --tags --abbrev=0)
         release_name="PinXCheck-$tag-${{ matrix.target }}"
 
