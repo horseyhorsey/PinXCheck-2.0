@@ -54,7 +54,7 @@ jobs:
     - name: Publish
       uses: softprops/action-gh-release@v1
       with:
-          tag_name: "2.0.0"
+          tag_name: "2.0.1"
           files: "PinXCheck*"
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
