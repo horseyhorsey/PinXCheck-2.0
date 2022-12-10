@@ -49,6 +49,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\modules\AutoHotkey.Interop\src\AutoHotkey.Interop\AutoHotkey.Interop.csproj">
+      <Project>{700CB712-7B69-4964-8B43-8DE89B233232}</Project>
+      <Name>AutoHotkey.Interop</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
