@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Hs.PinXCheck.Settings</RootNamespace>
     <AssemblyName>Hs.PinXCheck.Settings</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,18 +105,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\DataModels\Hs.PinballX\Hs.PinballX.csproj">
-      <Project>{a60d83b7-e0a0-4caf-9b2b-fc82341d17ff}</Project>
-      <Name>Hs.PinballX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DataModels\Hs.PinXCheck.Setting\Hs.PinXCheck.Setting.csproj">
-      <Project>{3473a1ca-392f-4c08-9d55-aed0ef7692af}</Project>
-      <Name>Hs.PinXCheck.Setting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
-      <Project>{513d9b41-bce7-42d6-921f-f263a50f1d5a}</Project>
+    <ProjectReference Include="..\..\Domain\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
+      <Project>{513D9B41-BCE7-42D6-921F-F263A50F1D5A}</Project>
       <Name>Hs.PinXCheck.Base</Name>
     </ProjectReference>
   </ItemGroup>

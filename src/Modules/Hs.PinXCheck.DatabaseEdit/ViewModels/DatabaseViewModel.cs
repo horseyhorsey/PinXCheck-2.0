@@ -9,13 +9,12 @@ using Hs.PinXCheck.Base.Interfaces;
 using System.Windows.Data;
 using System.ComponentModel;
 using Hs.PinXCheck.Base.Services;
-using Hs.VirtualPin.Database;
 using Prism.Regions;
 using Hs.PinXCheck.Base.Constants;
 using System.Collections;
-using Hs.Services.VisualPinball;
 using System.IO;
-using System.Diagnostics;
+using Hs.PinXCheck.Domain.Model;
+using Hs.Services.VisualPinball;
 
 namespace Hs.PinXCheck.Database.View.ViewModels
 {

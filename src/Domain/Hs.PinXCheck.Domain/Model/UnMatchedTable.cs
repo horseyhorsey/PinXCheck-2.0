@@ -1,4 +1,4 @@
-﻿namespace Hs.VirtualPin.Database
+﻿namespace Hs.PinXCheck.Domain.Model
 {
     public class UnMatchedTable
     {

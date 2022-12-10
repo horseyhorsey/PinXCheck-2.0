@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Hs.VirtualPin.Database
+namespace Hs.PinXCheck.Domain.Model
 {
     public class MasterTables : ObservableCollection<IpdbDatabase>
     {

@@ -1,10 +1,8 @@
-﻿using Hs.PinXCheck.Setting;
-
-namespace Hs.PinXCheck.Base.Interfaces
+﻿namespace Hs.PinXCheck.Base.Interfaces
 {
     public interface ISettingsRepo
     {
-        Settings PinXCheckSettings { get; set; }
+        PinXCheckSettings PinXCheckSettings { get; set; }
 
         void LoadPinXCheckSettings();
 

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Hs.PinXCheck.Base</RootNamespace>
     <AssemblyName>Hs.PinXCheck.Base</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,22 +105,15 @@
     <Compile Include="Services\IFolderService.cs" />
     <Compile Include="Services\SelectedService.cs" />
     <Compile Include="Services\FolderService.cs" />
+    <Compile Include="PinXCheckSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataModels\Hs.PinballX\Hs.PinballX.csproj">
-      <Project>{a60d83b7-e0a0-4caf-9b2b-fc82341d17ff}</Project>
-      <Name>Hs.PinballX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataModels\Hs.PinXCheck.Setting\Hs.PinXCheck.Setting.csproj">
-      <Project>{3473a1ca-392f-4c08-9d55-aed0ef7692af}</Project>
-      <Name>Hs.PinXCheck.Setting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataModels\Hs.VirtualPin.Database\Hs.VirtualPin.Database.csproj">
-      <Project>{b6b41491-c052-4a98-b915-ce90453febf4}</Project>
-      <Name>Hs.VirtualPin.Database</Name>
+    <ProjectReference Include="..\Hs.PinXCheck.Domain\Hs.PinXCheck.Domain.csproj">
+      <Project>{35F06361-9CA1-438A-8F8E-4123ED9935D6}</Project>
+      <Name>Hs.PinXCheck.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

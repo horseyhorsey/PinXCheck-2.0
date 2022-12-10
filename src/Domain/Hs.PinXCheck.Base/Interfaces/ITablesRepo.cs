@@ -1,8 +1,4 @@
-﻿using Hs.VirtualPin.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Hs.PinXCheck.Domain.Model;
 using System.Threading.Tasks;
 
 namespace Hs.PinXCheck.Base.Interfaces

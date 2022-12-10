@@ -183,21 +183,21 @@
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Hs.PinXCheck.Resources\Hs.PinXCheck.Resources.csproj">
-      <Project>{f3605260-5751-42be-8a38-f003d53045bf}</Project>
-      <Name>Hs.PinXCheck.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataModels\Hs.PinballX\Hs.PinballX.csproj">
-      <Project>{A60D83B7-E0A0-4CAF-9B2B-FC82341D17FF}</Project>
-      <Name>Hs.PinballX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataModels\Hs.PinXCheck.Setting\Hs.PinXCheck.Setting.csproj">
-      <Project>{3473A1CA-392F-4C08-9D55-AED0EF7692AF}</Project>
-      <Name>Hs.PinXCheck.Setting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
+    <ProjectReference Include="..\Domain\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
       <Project>{513d9b41-bce7-42d6-921f-f263a50f1d5a}</Project>
       <Name>Hs.PinXCheck.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Hs.PinXCheck.Domain\Hs.PinXCheck.Domain.csproj">
+      <Project>{35F06361-9CA1-438A-8F8E-4123ED9935D6}</Project>
+      <Name>Hs.PinXCheck.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Hs.Services.VisualPinball\Hs.Services.VisualPinball.csproj">
+      <Project>{62B7E5CE-FEAD-4AF7-86CC-BC1823F47D86}</Project>
+      <Name>Hs.Services.VisualPinball</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hs.PinXCheck.Resources\Hs.PinXCheck.Resources.csproj">
+      <Project>{f3605260-5751-42be-8a38-f003d53045bf}</Project>
+      <Name>Hs.PinXCheck.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Hs.PinXCheck.Database.Editing\Hs.PinXCheck.Database.Editing.csproj">
       <Project>{ed67dd83-0da1-4823-8f56-65e927cf0eed}</Project>
@@ -239,10 +239,6 @@
       <Project>{b68d0b64-39d9-4f79-9e3c-d4cecd754424}</Project>
       <Name>Hs.PinXCheck.UnusedTables</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Hs.Services.VisualPinball\Hs.Services.VisualPinball.csproj">
-      <Project>{62B7E5CE-FEAD-4AF7-86CC-BC1823F47D86}</Project>
-      <Name>Hs.Services.VisualPinball</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="tree.ico" />
@@ -257,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fody.2.4.4\build\Fody.targets" Condition="Exists('..\..\packages\Fody.2.4.4\build\Fody.targets')" />

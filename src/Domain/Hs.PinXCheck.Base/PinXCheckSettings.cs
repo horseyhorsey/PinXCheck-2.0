@@ -1,8 +1,8 @@
 ﻿using Prism.Mvvm;
 
-namespace Hs.PinXCheck.Setting
+namespace Hs.PinXCheck.Base
 {
-    public class Settings : BindableBase
+    public class PinXCheckSettings : BindableBase
     {
         private string pinballXPath;
         public string PinballXPath

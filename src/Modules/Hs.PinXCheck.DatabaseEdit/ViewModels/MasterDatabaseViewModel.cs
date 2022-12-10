@@ -3,13 +3,10 @@ using Hs.PinXCheck.Base.Events;
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.PrismBase;
 using Hs.PinXCheck.Base.Services;
-using Hs.VirtualPin.Database;
+using Hs.PinXCheck.Domain.Model;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -35,7 +32,7 @@ namespace Hs.PinXCheck.Database.View.ViewModels
 
             if (_tablesRepo.MasterTableList == null)
             {
-                _tablesRepo.MasterTableList = new VirtualPin.Database.MasterTables();
+                _tablesRepo.MasterTableList = new MasterTables();
                 _tablesRepo.GetMasterTables();
 
                 MasterTables = new ListCollectionView(_tablesRepo.MasterTableList);
@@ -98,7 +95,7 @@ namespace Hs.PinXCheck.Database.View.ViewModels
         #region Support Methods
         private void SetNewDescription()
         {
-            var currentItem = MasterTables.CurrentItem as VirtualPin.Database.IpdbDatabase;
+            var currentItem = MasterTables.CurrentItem as IpdbDatabase;
 
             var tableToEdit = _tablesRepo.PinballXTableList.Where(x => x.Name == _selectedService.SelectedTableName).FirstOrDefault();
 

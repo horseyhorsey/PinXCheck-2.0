@@ -132,17 +132,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\DataModels\Hs.PinXCheck.Setting\Hs.PinXCheck.Setting.csproj">
-      <Project>{3473A1CA-392F-4C08-9D55-AED0EF7692AF}</Project>
-      <Name>Hs.PinXCheck.Setting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DataModels\Hs.VirtualPin.Database\Hs.VirtualPin.Database.csproj">
-      <Project>{B6B41491-C052-4A98-B915-CE90453FEBF4}</Project>
-      <Name>Hs.VirtualPin.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
-      <Project>{513d9b41-bce7-42d6-921f-f263a50f1d5a}</Project>
+    <ProjectReference Include="..\..\Domain\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
+      <Project>{513D9B41-BCE7-42D6-921F-F263A50F1D5A}</Project>
       <Name>Hs.PinXCheck.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domain\Hs.PinXCheck.Domain\Hs.PinXCheck.Domain.csproj">
+      <Project>{35F06361-9CA1-438A-8F8E-4123ED9935D6}</Project>
+      <Name>Hs.PinXCheck.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

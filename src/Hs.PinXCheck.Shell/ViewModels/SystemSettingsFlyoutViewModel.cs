@@ -1,13 +1,11 @@
-﻿using Hs.PinballX;
-using Hs.PinXCheck.Base.Events;
+﻿using Hs.PinXCheck.Base.Events;
 using Hs.PinXCheck.Base.Interfaces;
 using Hs.PinXCheck.Base.PrismBase;
 using Hs.PinXCheck.Base.Services;
+using Hs.PinXCheck.Domain.Model;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -128,7 +126,7 @@ namespace Hs.PinXCheck.Shell.ViewModels
                 {
                     _systemsRepo.SaveSystemToIni(pinballXConfig, SelectedSystem);
                 }
-                catch (Exception e) { }
+                catch { }
             }
             
         }
@@ -141,7 +139,7 @@ namespace Hs.PinXCheck.Shell.ViewModels
                 SelectedSystem = new PinballXSystem();
                 SelectedSystem = system.FirstOrDefault();
             }
-            catch (Exception e) { }
+            catch { }
         }
 
         #endregion

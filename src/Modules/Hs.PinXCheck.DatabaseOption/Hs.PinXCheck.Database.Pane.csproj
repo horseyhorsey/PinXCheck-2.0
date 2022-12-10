@@ -114,10 +114,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
-      <Project>{513d9b41-bce7-42d6-921f-f263a50f1d5a}</Project>
+    <ProjectReference Include="..\..\Domain\Hs.PinXCheck.Base\Hs.PinXCheck.Base.csproj">
+      <Project>{513D9B41-BCE7-42D6-921F-F263A50F1D5A}</Project>
       <Name>Hs.PinXCheck.Base</Name>
     </ProjectReference>
   </ItemGroup>

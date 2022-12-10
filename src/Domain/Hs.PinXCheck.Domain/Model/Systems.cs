@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Hs.PinballX
+namespace Hs.PinXCheck.Domain.Model
 {
     public class Systems : ObservableCollection<PinballXSystem>
     {        
